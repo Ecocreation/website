@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Creational</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assests/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Header Section - Fixed -->
+    <header class="header-container">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <img src="assests/logo.png" alt="">
+            </div>
+            <!--<span class="logo-text">Eco Creational</span>-->
+        </div>
+        <nav>
+            <ul class="navigation-menu" id="navigationMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#goal" class="nav-link">Goal</a></li>
+                <li><a href="#service" class="nav-link">Service</a></li>
+                <li><a href="#question" class="nav-link">Q&A</a></li>
+            </ul>
+        </nav>
+        <button class="signup-button">Contact Us</button>
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+        </div>
+
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <!-- Animated Background Elements -->
+        <div class="background-grid"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Decorative Stars -->
+        <div class="decorative-stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+
+        <!-- Main Content Container -->
+        <div class="hero-container">
+            <div class="hero-content">
+                <!-- Left Content -->
+                <div class="hero-text-content">
+                    <!-- Status Badge -->
+                    <div class="status-badge">
+                        <div class="status-indicator"></div>
+                        <span>Eco Creation</span>
+                    </div>
+
+                    <!-- Main Title with Advanced Typography -->
+                    <h1 class="hero-title">
+                        We create <span class="title-highlight">eco-friendly</span> solutions for everyone.
+                    </h1>
+
+                    <!-- Enhanced Description -->
+                    <p class="hero-description">
+                        Empower your lifestyle with <span class="highlight-text">eco-friendly choices</span>
+                        and sustainable style. Our bags are designed to
+                        support conscious living while blending fashion, function, and care for the planet.
+                    </p>
+
+                    <!-- Advanced CTA Section -->
+                    <div class="hero-cta-section">
+                        <a href="#" class="primary-cta-button">
+                            <span class="button-text">Get in touch</span>
+                            <div class="button-shine"></div>
+                            <div class="button-glow"></div>
+                        </a>
+                        <button class="watch-video-btn">
+                            <div class="play-icon-container">
+                                <div class="play-icon">
+                                    <div class="play-triangle"></div>
+                                </div>
+                                <div class="play-ring"></div>
+                                <div class="play-pulse"></div>
+                            </div>
+                            <span>Watch video</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Visual Content -->
+                <div class="hero-visual">
+                    <!-- Geometric Background Elements -->
+                    <div class="geometric-elements">
+                        <div class="hexagon-large">
+                            <div class="hexagon-inner"></div>
+                        </div>
+                        <div class="triangle-1"></div>
+                        <div class="triangle-2"></div>
+                        <div class="circle-orbit-1"></div>
+                        <div class="circle-orbit-2"></div>
+                    </div>
+
+                    <!-- Main Image Composition -->
+                    <div class="image-composition">
+                        <!-- Background Decoration -->
+                        <div class="background-decoration"></div>
+
+                        <!-- Central Image -->
+                        <div class="central-image">
+                            <div class="image-overlay"></div>
+                            <img src="assests/Save the Earth-bro.png"
+                                alt="Living Space">
+                        </div>
+                    </div>
+
+                    <!-- Floating Data Points -->
+                    <div class="data-points">
+                        <div class="data-point data-point-1">
+                            <div class="data-label">ECO-SCORE</div>
+                            <div class="data-value">98.5%</div>
+                            <div class="data-glow"></div>
+                        </div>
+                        <div class="data-point data-point-2">
+                            <div class="data-label">SOLD</div>
+                            <div class="data-value">+2.4K</div>
+                            <div class="data-glow"></div>
+                        </div>
+                        <div class="data-point data-point-3">
+                            <div class="data-label">SAVED</div>
+                            <div class="data-value">15.2 CO₂</div>
+                            <div class="data-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Career Goals Section -->
+    <section class="career-goals-section ">
+        <h2 class="career-goals-title">
+            <span id="typewriter-text"></span>
+        </h2>
+
+    </section>
+    <script>
+        const messages = [
+            'Build a <span class="purple-text">sustainable future</span> with our eco-friendly bags.',
+            'Each design combines <span class="green-text">ethical craftsmanship</span> with planet-friendly materials.',
+            'Join us in promoting <span class="purple-text">conscious living</span> through beautiful, durable, and <span class="pink-text">eco-smart solutions</span>.'
+        ];
+
+        const target = document.getElementById("typewriter-text");
+        let msgIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 50;
+        const pauseBetween = 1500;
+
+        function getVisibleCharCount(htmlString) {
+            // Remove HTML tags to count only visible characters
+            return htmlString.replace(/<[^>]+>/g, '');
+        }
+
+        function sliceHTML(html, visibleCharCount) {
+            let result = '';
+            let count = 0;
+            const tagStack = [];
+            const regex = /<\/?[^>]+>|[^<]/g;
+            let match;
+
+            while ((match = regex.exec(html)) && count < visibleCharCount) {
+                const token = match[0];
+
+                if (token.startsWith('<')) {
+                    result += token;
+
+                    if (!token.startsWith('</')) {
+                        // Push open tag
+                        const tagName = token.match(/^<(\w+)/)?.[1];
+                        if (tagName) tagStack.push(tagName);
+                    } else {
+                        // Pop close tag
+                        tagStack.pop();
+                    }
+                } else {
+                    result += token;
+                    count++;
+                }
+            }
+
+            // Close any unclosed tags
+            while (tagStack.length) {
+                const tagName = tagStack.pop();
+                result += `</${tagName}>`;
+            }
+
+            return result;
+        }
+
+        function typeLoop() {
+            const currentHTML = messages[msgIndex];
+            const currentPlain = getVisibleCharCount(currentHTML);
+            const visibleLength = currentPlain.length;
+
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+
+            const partialHTML = sliceHTML(currentHTML, charIndex);
+            target.innerHTML = partialHTML;
+
+            if (!isDeleting && charIndex === visibleLength) {
+                isDeleting = true;
+                setTimeout(typeLoop, pauseBetween);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                msgIndex = (msgIndex + 1) % messages.length;
+                setTimeout(typeLoop, 500);
+            } else {
+                setTimeout(typeLoop, isDeleting ? 30 : typingSpeed);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", typeLoop);
+    </script>
+
+
+    <!-- Open Your Eyes Section -->
+    <section class="yoga-section" id="about">
+        <div class="yoga-content">
+            <div class="content-container">
+                <h2 class="section-title">Your Life For a Greener, Cleaner Tomorrow</h2>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon purple">
+                            ♻️
+                        </div>
+                        <div class="feature-content">
+                            <h3>Sustainable Products</h3>
+                            <p>We create eco-friendly bags that help reduce plastic waste without compromising on style
+                                or functionality. Each product supports a cleaner planet.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon green">
+                            🌱
+                        </div>
+                        <div class="feature-content">
+                            <h3>Eco-Conscious Living</h3>
+                            <p>Our mission goes beyond bags. We encourage mindful habits and provide tools that make
+                                sustainable living easy, practical, and part of your everyday life.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon light-green">
+                            🤝
+                        </div>
+                        <div class="feature-content">
+                            <h3>Community for the Planet</h3>
+                            <p>Join a growing movement of eco-conscious individuals. Together, we’re building a future
+                                rooted in responsibility, innovation, and care for the environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <div class="yoga-image">
+                    <div class="video-overlay">
+                        <div>
+                            <div class="video-text">Real Eco Bag Reviews</div>
+                            <div class="waveform"></div>
+                        </div>
+                        <div class="play-button"
+                            onclick="document.getElementById('testimonial').scrollIntoView({ behavior: 'smooth' });">▶
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Goal Section -->
+    <section class="goal-section full-height-section" id="goal">
+        <div class="goal-content-wrapper">
+            <div class="goal-content one">
+                <h2 class="goal-title">The</h2>
+                <p class="goal-description">
+                    The world is shifting toward sustainability, and we believe every small step counts. At the heart of
+                    our business is a deep commitment to the planet — creating eco-friendly bags that combine style,
+                    durability, and environmental responsibility. We envision a future where conscious choices are
+                    effortless, and every bag carried is a symbol of care for the Earth.
+                </p>
+            </div>
+            <div class="goal-visual">
+                <div class="crossed-circle">
+                    <div class="cross-mark"></div>
+                </div>
+            </div>
+            <div class="goal-content two">
+                <h2 class="goal-title">Goal</h2>
+                <p class="goal-description">
+                    Our goal is to create a lasting positive impact on the environment by offering high-quality,
+                    eco-friendly bags that promote sustainable living. We are committed to reducing plastic waste
+                    through innovative design, responsible materials, and ethical production practices. By encouraging
+                    the use of reusable alternatives, we aim to foster a culture of environmental awareness and empower
+                    individuals to make conscious, planet-friendly choices in their everyday lives.
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="projects-section">
+        <div class="section-header">
+            <h2 class="section-title">Eco Creations</h2>
+            <p class="section-subtitle">Discover my collection of sustainable and innovative eco bag designs, crafted
+                with passion and environmental consciousness.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project Card 1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assests/fb_pic2.jpg" alt="Eco-Friendly Tote Bag">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Heritage-Driven Innovation</h3>
+                    <p class="project-description">
+                        We partnered with the University of Colombo's Postgraduate Institute of Indigenous Medicine to
+                        provide vibrant ecofriendly tote bags for their Annual Research Symposium — a step forward in
+                        promoting sustainable choices.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eco-Friendly</span>
+                        <span class="project-tag">Sustainable</span>
+                        <span class="project-tag">Reusable</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date">July 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Project Card 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assests/fb_pic7.jpeg" alt="Eco-Friendly Tote Bag">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Ditch Plastic, Go Green with Vibrant Bags</h3>
+                    <p class="project-description">
+                        We partnered with Arcade of Aluminium Pvt Ltd to deliver custom eco-friendly bags that combine
+                        sustainability with bold design — helping brands stand out while reducing plastic waste.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eco-Friendly</span>
+                        <span class="project-tag">Custom Design</span>
+                        <span class="project-tag">Reusable</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date">July 2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Project Card 3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assests/fb_pic5.jpg" alt="Eco-Friendly Tote Bag">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Eco-Friendly Promotion for CIPM Sri Lanka</h3>
+                    <p class="project-description">
+                        We partnered with CIPM Sri Lanka to supply ecofriendly tote bags, books, and pencils for the
+                        National HR Conference 2023 — a meaningful step toward sustainable and impactful promotional
+                        gifting.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eco-Friendly</span>
+                        <span class="project-tag">Custom Products</span>
+                        <span class="project-tag">Sustainability</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date">2023</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Project Card 4 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assests/fb_pic8.jpeg" alt="Eco-Friendly Tote Bag">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Partnering with University of Peradeniya</h3>
+                    <p class="project-description">
+                        We are honoured to partner with the University of Peradeniya, Botanical Science Department, to
+                        provide customized ecofriendly tote bags — a step forward in blending fashion with environmental
+                        responsibility.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eco-Friendly</span>
+                        <span class="project-tag">University Partnership</span>
+                        <span class="project-tag">Sustainable Design</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date">2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Project Card 5 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assests/fb_pic9.jpeg" alt="Eco-Friendly Laundry Bag">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Partnering with Wattura Resort and Spa</h3>
+                    <p class="project-description">
+                        Proud to partner with Wattura Resort and Spa Sri Lanka to provide eco-friendly laundry bags made
+                        from non-woven, biodegradable materials. We offer custom options in cotton, canvas, and jute to
+                        suit your needs.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eco-Friendly</span>
+                        <span class="project-tag">Customizable</span>
+                        <span class="project-tag">Sustainable Materials</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date">2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Project Card 6 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assests/fb_pic1.jpg" alt="Eco-Friendly Tote Bag">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Partnering with Nestle Lanka Ltd - Maggi</h3>
+                    <p class="project-description">
+                        Honored to partner with Nestle Lanka Ltd Maggi in promoting eco-conscious bags. As awareness
+                        grows about the environmental impact of single-use plastics, more consumers and companies demand
+                        sustainable, responsibly manufactured promotional bags.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Eco-Friendly</span>
+                        <span class="project-tag">Sustainability</span>
+                        <span class="project-tag">Promotional Bags</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date">2025</span>
+                        <span class="project-status">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- Video Courses Section 
+    <section class="video-courses-section full-height-section" id="service">
+        <div class="courses-content">
+            <h2 class="courses-title">Choose from <span class="purple-number">100+ </span>eco-inspired bag
+                designs, ideas, and creations to help shape a greener future.</h2>
+            <h2 class="courses-subtitle">sustainable product designs</h2>
+            <p class="courses-description">
+                Whether it's a personal design, a business event, or a meaningful celebration, we bring your vision to
+                life using sustainable materials and planet-friendly craftsmanship. Each bag is made with care to
+                reflect your values and leave a lighter footprint on the Earth.
+            </p>
+            <div class="products">
+                <div class="product-images">
+                    <img src="assests/fb_pic1.jpg" alt="">
+                    <img src="assests/fb_pic2.jpg" alt="">
+                    <img src="assests/fb_pic3.jpg" alt="">
+                    <img src="assests/image_04.webp" alt="">
+                    <img src="assests/image_05.webp" alt="">
+                    <img src="assests/image_06.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <div class="container" id="question">
+        <h1 class="section-title">Common Questions</h1>
+
+        <div class="content-wrapper">
+            <div class="image-section">
+
+                <a href="https://www.facebook.com/share/1ZBHp2oGmy/?mibextid=wwXIfr" class="cta-button">
+                    Get In touch
+                    <div class="arrow-icon">→</div>
+                </a>
+            </div>
+
+            <div class="faq-section">
+                <div class="faq-item active">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3> Are your bags really eco-friendly?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Our bags are made using sustainable, biodegradable, or recycled materials. They’re designed
+                        to reduce plastic waste and support a cleaner planet.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3> Can I reuse your bags multiple times?</h3>
+                        <div class="faq-icon">−</div>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. Our eco-bags are durable and built to last, making them a great alternative to
+                        single-use plastic.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>How do I care for my eco bag?</h3>
+                        <div class="faq-icon">−</div>
+                    </div>
+                    <div class="faq-answer">
+                        Most of our bags can be gently hand-washed and air-dried. Care instructions are included with
+                        every product.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Do you offer bulk or custom orders?</h3>
+                        <div class="faq-icon">−</div>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we offer bulk and customized options for businesses, events, and special occasions. Contact
+                        us for more details.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Money Move Section -->
+    <section class="money-move-section">
+        <div class="money-content-wrapper">
+            <!-- Left Content -->
+            <div class="money-content">
+                <h1 class="money-title">Make Your<br>Bag Matter More</h1>
+                <p class="money-description">
+                    That’s the beauty of Eco Creation. You bring the idea — we bring it to life with sustainable
+                    materials, personalized design, and a commitment to the planet. Whether it’s for a celebration,
+                    business, or daily use, we turn your vision into a reusable statement of purpose...
+                </p>
+
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2l1.5 4h9L18 2" />
+                                <path d="M3 6h18l-1.5 14H4.5L3 6z" />
+                                <path d="M9 10v4" />
+                                <path d="M15 10v4" />
+                            </svg>
+
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">5000+</div>
+                            <div class="stat-label">Custom Eco Bags Created</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">+95%</div>
+                            <div class="stat-label">Plastic-Free Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual -->
+            <div class="money-visual">
+                <div class="logo-container">
+                    <div class="circular-logo">eco</div>
+                </div>
+
+                <!-- Floating credit card -->
+                <div class="credit-card">
+                    <!-- Card chip -->
+                    <div class="card-chip"></div>
+
+                    <!-- Contactless symbol -->
+                    <div class="contactless-symbol">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                            <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                            <line x1="12" y1="20" x2="12.01" y2="20" />
+                        </svg>
+                    </div>
+
+                    <!-- Card number dots -->
+                    <div class="card-number">
+                        <div class="number-group">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="number-group">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="number-group">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="number-group">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+
+                    <!-- Cardholder info -->
+                    <div class="cardholder-info">
+                        <div class="cardholder-details">
+                            <div class="avatar"></div>
+                            <div class="name">
+                                <div>Eco</div>
+                                <div>Creation</div>
+                            </div>
+                        </div>
+                        <div class="mastercard-logo">
+                            <div class="circle red"></div>
+                            <div class="circle yellow"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+        <section class="testimonials-section" id="testimonial">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2 class="testimonials-title">What Our Partners Say</h2>
+                <p class="testimonials-subtitle">Trusted by leading organizations worldwide</p>
+                <div class="testimonials-rating">
+                    <div class="rating-score">4.8</div>
+                    <div class="rating-stars">★★★★★</div>
+                    <div class="rating-source">EcoCreation Reviews</div>
+                </div>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="card-header">
+                        <div class="quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="organization-badge">University Partnership</div>
+                    </div>
+                    <p class="testimonial-text">
+                        It is our pleasure to partner with the University of Peradeniya, Geography Department, and 
+                        provide these eco-friendly tote bags as a token of appreciation for their "Tea and Talk" 
+                        farewell party.
+                    </p>
+                    <div class="testimonial-footer">
+                        <div class="author-info">
+                            <div class="author-name">University of Peradeniya</div>
+                            <div class="author-title">Geography Department</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="card-header">
+                        <div class="quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="organization-badge">Professional Institute</div>
+                    </div>
+                    <p class="testimonial-text">
+                        It is our pleasure to partner with CIPM Sri Lanka and provide these eco-friendly tote bags, 
+                        books, and pencils as a token of appreciation for their special event.
+                    </p>
+                    <div class="testimonial-footer">
+                        <div class="author-info">
+                            <div class="author-name">CIPM Sri Lanka</div>
+                            <div class="author-title">Professional Development</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section ">
+        <div class="footer-content-wrapper">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Eco Creation</div>
+                    <div class="footer-tagline">Let's Talk</div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <div class="footer-column-title">Brand</div>
+                        <a href="#about" class="footer-link">About</a>
+                        <a href="#goal" class="footer-link">Goal</a>
+                        <a href="#service" class="footer-link">Service</a>
+                        <a href="#question" class="footer-link">Q&A</a>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Follow us</div>
+
+                        <a href="#" class="footer-link">Facebook</a>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Support</div>
+                        <a href="#" class="footer-link">Help Center</a>
+                        <a href="#" class="footer-link">Contact</a>
+                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by YAGI Influx Solutions.</p>
+
+            </div>
+        </div>
+    </footer>
+    <div class="whatsapp-button" onclick="window.open('https://wa.me/94777222773', '_blank')">
+
+    </div>
+    <div class="up" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navigationMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const menu = document.getElementById('navigationMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function () {
+            const menu = document.getElementById('navigationMenu');
+            if (window.innerWidth > 768) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links (optional)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-icon').textContent = '−';
+            });
+
+            // If the clicked item wasn't active, open it
+            if (!isActive) {
+                faqItem.classList.add('active');
+                faqItem.querySelector('.faq-icon').textContent = '+';
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+
+</html>

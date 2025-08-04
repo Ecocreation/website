@@ -126,8 +126,7 @@
                         <!-- Central Image -->
                         <div class="central-image">
                             <div class="image-overlay"></div>
-                            <img src="assests/Save the Earth-bro.png"
-                                alt="Living Space">
+                            <img src="assests/Save the Earth-amico (1).png" alt="Living Space">
                         </div>
                     </div>
 
@@ -155,107 +154,17 @@
     </section>
 
 
-    <!-- Career Goals Section -->
-    <section class="career-goals-section ">
-        <h2 class="career-goals-title">
-            <span id="typewriter-text"></span>
-        </h2>
-
-    </section>
-    <script>
-        const messages = [
-            'Build a <span class="purple-text">sustainable future</span> with our eco-friendly bags.',
-            'Each design combines <span class="green-text">ethical craftsmanship</span> with planet-friendly materials.',
-            'Join us in promoting <span class="purple-text">conscious living</span> through beautiful, durable, and <span class="pink-text">eco-smart solutions</span>.'
-        ];
-
-        const target = document.getElementById("typewriter-text");
-        let msgIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 50;
-        const pauseBetween = 1500;
-
-        function getVisibleCharCount(htmlString) {
-            // Remove HTML tags to count only visible characters
-            return htmlString.replace(/<[^>]+>/g, '');
-        }
-
-        function sliceHTML(html, visibleCharCount) {
-            let result = '';
-            let count = 0;
-            const tagStack = [];
-            const regex = /<\/?[^>]+>|[^<]/g;
-            let match;
-
-            while ((match = regex.exec(html)) && count < visibleCharCount) {
-                const token = match[0];
-
-                if (token.startsWith('<')) {
-                    result += token;
-
-                    if (!token.startsWith('</')) {
-                        // Push open tag
-                        const tagName = token.match(/^<(\w+)/)?.[1];
-                        if (tagName) tagStack.push(tagName);
-                    } else {
-                        // Pop close tag
-                        tagStack.pop();
-                    }
-                } else {
-                    result += token;
-                    count++;
-                }
-            }
-
-            // Close any unclosed tags
-            while (tagStack.length) {
-                const tagName = tagStack.pop();
-                result += `</${tagName}>`;
-            }
-
-            return result;
-        }
-
-        function typeLoop() {
-            const currentHTML = messages[msgIndex];
-            const currentPlain = getVisibleCharCount(currentHTML);
-            const visibleLength = currentPlain.length;
-
-            if (isDeleting) {
-                charIndex--;
-            } else {
-                charIndex++;
-            }
-
-            const partialHTML = sliceHTML(currentHTML, charIndex);
-            target.innerHTML = partialHTML;
-
-            if (!isDeleting && charIndex === visibleLength) {
-                isDeleting = true;
-                setTimeout(typeLoop, pauseBetween);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                msgIndex = (msgIndex + 1) % messages.length;
-                setTimeout(typeLoop, 500);
-            } else {
-                setTimeout(typeLoop, isDeleting ? 30 : typingSpeed);
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", typeLoop);
-    </script>
 
 
     <!-- Open Your Eyes Section -->
     <section class="yoga-section" id="about">
         <div class="yoga-content">
             <div class="content-container">
-                <h2 class="section-title">Your Life For a Greener, Cleaner Tomorrow</h2>
+                <h2 class="section-title">Your Life For a Greener</h2>
 
                 <div class="features-list">
                     <div class="feature-item">
-                        <div class="feature-icon purple">
+                        <div class="feature-icon green">
                             ♻️
                         </div>
                         <div class="feature-content">
@@ -277,7 +186,7 @@
                     </div>
 
                     <div class="feature-item">
-                        <div class="feature-icon light-green">
+                        <div class="feature-icon green">
                             🤝
                         </div>
                         <div class="feature-content">
@@ -305,6 +214,95 @@
             </div>
         </div>
     </section>
+
+
+    <section class="category-section" id="about">
+        <div class="category-container">
+            <div class="category-left-panel">
+                <div class="category-controls">
+                    <div class="category-control category-red"></div>
+                    <div class="category-control category-yellow"></div>
+                    <div class="category-control category-green"></div>
+                </div>
+                <div class="category-hot-deal">CATOGORIES</div>
+                <div class="category-title">
+                    Eco<br>Creations
+                </div>
+                <div class="category-play-button">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5V19L19 12L8 5Z" fill="white" />
+                    </svg>
+                </div>
+                
+            </div>
+            <div class="category-right-panel">
+                <div class="category-main-content">
+                    <h1 class="category-main-title">Dream between two worlds</h1>
+
+                    <p class="category-description">
+                        For the American traveler, Santora Faros is a dream. It's a far off and exotic Caribbean land,
+                        filled with palm trees, piercing turquoise ocean, rich history, beaches galore, and one of the
+                        best food.
+                    </p>
+                    <div class="category-details">
+
+
+                        <button class="category-learn-more-button">View Brocher</button>
+                    </div>
+                </div>
+                <div class="category-cards-outer">
+                    <div class="category-cards-container">
+                        <div class="category-card">
+                            <img src="assests/non_woowen.webp" alt="Non-Woven Bags" class="category-card-image">
+                            <div class="category-card-title">Non-Woven Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/Canvas.webp" alt="Canvas Bags" class="category-card-image">
+                            <div class="category-card-title">Canvas Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/JUCO.jpg" alt="Jute & Juco Bags" class="category-card-image">
+                            <div class="category-card-title">Jute & Juco Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/calico_cotton.jpg" alt="Calico Cotton Bags" class="category-card-image">
+                            <div class="category-card-title">Calico Cotton Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/the_brand.webp" alt="The Brand" class="category-card-image">
+                            <div class="category-card-title">The Brand</div>
+                        </div>
+
+                        <div class="category-card">
+                            <img src="assests/non_woowen.webp" alt="Non-Woven Bags" class="category-card-image">
+                            <div class="category-card-title">Non-Woven Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/Canvas.webp" alt="Canvas Bags" class="category-card-image">
+                            <div class="category-card-title">Canvas Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/JUCO.jpg" alt="Jute & Juco Bags" class="category-card-image">
+                            <div class="category-card-title">Jute & Juco Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/calico_cotton.jpg" alt="Calico Cotton Bags" class="category-card-image">
+                            <div class="category-card-title">Calico Cotton Bags</div>
+                        </div>
+                        <div class="category-card">
+                            <img src="assests/the_brand.webp" alt="The Brand" class="category-card-image">
+                            <div class="category-card-title">The Brand</div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- The Goal Section -->
     <section class="goal-section full-height-section" id="goal">
@@ -726,7 +724,7 @@
     </section>
 
     <!-- Testimonials Section -->
-        <section class="testimonials-section" id="testimonial">
+    <section class="testimonials-section" id="testimonial">
         <div class="container">
             <div class="testimonials-header">
                 <h2 class="testimonials-title">What Our Partners Say</h2>
@@ -737,20 +735,23 @@
                     <div class="rating-source">EcoCreation Reviews</div>
                 </div>
             </div>
-            
+
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="card-header">
                         <div class="quote-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" fill="currentColor"/>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"
+                                    fill="currentColor" />
                             </svg>
                         </div>
                         <div class="organization-badge">University Partnership</div>
                     </div>
                     <p class="testimonial-text">
-                        It is our pleasure to partner with the University of Peradeniya, Geography Department, and 
-                        provide these eco-friendly tote bags as a token of appreciation for their "Tea and Talk" 
+                        It is our pleasure to partner with the University of Peradeniya, Geography Department, and
+                        provide these eco-friendly tote bags as a token of appreciation for their "Tea and Talk"
                         farewell party.
                     </p>
                     <div class="testimonial-footer">
@@ -764,14 +765,17 @@
                 <div class="testimonial-card">
                     <div class="card-header">
                         <div class="quote-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" fill="currentColor"/>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"
+                                    fill="currentColor" />
                             </svg>
                         </div>
                         <div class="organization-badge">Professional Institute</div>
                     </div>
                     <p class="testimonial-text">
-                        It is our pleasure to partner with CIPM Sri Lanka and provide these eco-friendly tote bags, 
+                        It is our pleasure to partner with CIPM Sri Lanka and provide these eco-friendly tote bags,
                         books, and pencils as a token of appreciation for their special event.
                     </p>
                     <div class="testimonial-footer">

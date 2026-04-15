@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Services | Eco Creational – Custom Eco Bags & Sustainable Solutions</title>
+    <meta name="description"
+        content="Explore our sustainable bag services: non-woven, canvas, jute, calico cotton & custom branding. Bulk orders, design assistance, and planet‑friendly production.">
+    <meta name="keywords"
+        content="eco bag services, custom eco bags, sustainable bag manufacturing, non-woven bags, canvas bags, jute bags, bulk eco bags, Sri Lanka eco products">
+    <meta name="author" content="Eco Creational">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assests/logo.png">
+    <link rel="apple-touch-icon" href="assests/logo.png">
+
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET & GLOBAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fbfef9;
+            color: #1e2e1c;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body.preload {
+            overflow: hidden;
+        }
+
+        body.loaded {
+            overflow: auto;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        #eco-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f9f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.7s ease, visibility 0.7s;
+            pointer-events: none;
+        }
+
+        .loaded #eco-loader {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+        }
+
+        .leaf-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            animation: gentle-float 2.2s infinite ease-in-out;
+        }
+
+        .leaf-spinner svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 12px rgba(46, 125, 50, 0.15));
+        }
+
+        .leaf-path {
+            fill: #2e7d32;
+            transform-origin: center;
+            animation: leaf-pulse 1.8s infinite alternate;
+        }
+
+        .loader-logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #1b5e20;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .loader-tagline {
+            font-size: 16px;
+            color: #4a7c59;
+            margin-bottom: 24px;
+        }
+
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #a5d6a7;
+            border-radius: 50%;
+            animation: dot-bounce 1.4s infinite both;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+            background: #2e7d32;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+            background: #43a047;
+        }
+
+        .dot:nth-child(3) {
+            background: #66bb6a;
+        }
+
+        @keyframes gentle-float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes leaf-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        @keyframes dot-bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.6);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* ===== HEADER (consistent with main) ===== */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.2rem 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 40, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon img {
+            width: 150px;
+            height: 90px;
+        }
+
+        .navigation-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a1e;
+            transition: color 0.2s;
+            font-size: 1.05rem;
+        }
+
+        .nav-link:hover {
+            color: #2e7d32;
+        }
+
+        .signup-button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 6px 14px rgba(46, 125, 50, 0.2);
+        }
+
+        .signup-button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-bar {
+            width: 28px;
+            height: 3px;
+            background: #1e3a1e;
+            border-radius: 3px;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .services-hero {
+            padding: 4rem 5% 3rem;
+            text-align: center;
+            background: linear-gradient(145deg, #eaf5e6 0%, #ffffff 90%);
+        }
+
+        .services-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #143214;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .services-hero h1 span {
+            color: #2e7d32;
+            position: relative;
+            display: inline-block;
+        }
+
+        .services-hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(46, 125, 50, 0.15);
+            z-index: -1;
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: #3a5e3a;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #1b5e20;
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 18px -8px #1b5e2066;
+            transition: 0.2s;
+        }
+
+        .btn-primary i {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary:hover {
+            background: #0f4514;
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2e7d32;
+            color: #2e7d32;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #2e7d3210;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-grid-section {
+            padding: 4rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #1a3a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #4a6b4a;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 20px 30px -8px rgba(0, 30, 0, 0.06);
+            transition: all 0.3s;
+            border: 1px solid #e2f0da;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 28px 36px -12px #1b5e2030;
+            border-color: #b8dfb0;
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #2e7d32;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            color: #1e3a1e;
+        }
+
+        .service-card p {
+            color: #3a533a;
+            margin-bottom: 1.8rem;
+        }
+
+        .material-badge {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background: #e9f4e5;
+            color: #1e5e1e;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ===== PROCESS TIMELINE ===== */
+        .process-section {
+            background: #f0f8ec;
+            width: 80%;
+            padding: 4rem 5%;
+            margin: 0 auto;
+            border-radius: 60px 60px 0 0;
+            margin-top: 2rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem 3rem;
+            margin-top: 2.5rem;
+        }
+
+        .timeline-step {
+            flex: 1 1 180px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #2e7d32;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 8px 14px #2e7d3266;
+        }
+
+        .timeline-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== CUSTOM QUOTE SECTION ===== */
+        .custom-quote {
+            padding: 8rem 5%;
+            background: white;
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            gap: 3rem;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .quote-content {
+            flex: 2 1 300px;
+        }
+
+        .quote-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #143214;
+        }
+
+        .quote-highlight {
+            color: #2e7d32;
+        }
+
+        .quote-cta {
+            flex: 1 1 250px;
+            text-align: center;
+        }
+
+        .quote-cta .btn-primary {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: #0e1f0e;
+            color: #d4e6d0;
+            padding: 3rem 5% 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-column-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            display: block;
+            color: #b6d8ae;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid #2a472a;
+            margin-top: 2rem;
+        }
+
+        .up {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            font-size: 24px;
+            padding: 10px 15px;
+            background: #4e9e24;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navigation-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 20px 20px rgba(0, 0, 0, 0.05);
+            }
+
+            .navigation-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Footer Section */
+        .footer-section.full-height-section {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .footer-section {
+            background: #0e1f0e;
+            color: white;
+            padding: 50px 10px 20px 10px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+
+
+
+        .footer-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: auto;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand {
+            flex: 1;
+        }
+
+        .footer-logo {
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            font-size: clamp(16px, 2vw, 18px);
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #a5d71c;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: #a5d71c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 10px;
+            text-align: center;
+            color: #d3e6c5;
+            font-size: 14px;
+        }
+
+        /*message button*/
+        .whatsapp-button {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 80px;
+            width: 80px;
+            background: url("assests/whatsapp.png") center/contain no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 10px;
+            /* Animation */
+            animation: bounce 3.5s infinite;
+        }
+
+        /* Bounce Keyframes */
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .whatsapp-button:hover {
+            cursor: pointer;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delays for service cards */
+        .service-card {
+            transition-delay: calc(var(--card-index, 0) * 0.1s);
+        }
+
+        /* Staggered delays for timeline steps */
+        .timeline-step {
+            transition-delay: calc(var(--step-index, 0) * 0.12s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-on-scroll {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="preload">
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="eco-loader">
+        <div class="loader-content">
+            <div class="leaf-spinner">
+                <svg viewBox="0 0 100 100">
+                    <path class="leaf-path"
+                        d="M50,10 C65,20 85,35 88,55 C91,75 78,85 60,88 C42,91 28,80 22,62 C16,44 22,25 38,16 C46,10 48,8 50,10 Z M50,15 C40,25 30,45 35,62 C40,76 52,82 65,78 C78,74 82,60 80,48 C78,36 65,20 50,15 Z"
+                        fill="#2E7D32" />
+                    <path d="M48,25 C40,35 35,50 38,62 C41,72 50,76 58,73 C66,70 70,60 69,50 C68,40 60,28 48,25 Z"
+                        fill="#66BB6A" opacity="0.7" />
+                </svg>
+            </div>
+            <div class="loader-logo-text">ECO CREATIONAL</div>
+            <div class="loader-tagline">sustainable services loading</div>
+            <div class="progress-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-container">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <img src="assests/logo.png" alt="Eco Creational">
+            </div>
+        </div>
+        <nav>
+            <ul class="navigation-menu" id="navigationMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="services.html" class="nav-link" style="color:#2e7d32; font-weight:600;">Services</a></li>
+                <li><a href="question.html" class="nav-link">Q&A</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="signup-button" onclick="window.open('https://wa.me/94777222773', '_blank')">Contact Us</button>
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="services-hero">
+        <h1>Eco‑friendly <span>bag services</span><br>tailored for you</h1>
+        <p class="hero-sub">From custom design to bulk production — sustainable materials, zero‑compromise quality.</p>
+        <div class="hero-cta-group">
+            <a href="#custom-quote" class="btn-primary"><i class="fas fa-leaf"></i> Request a quote</a>
+            <a href="#service-grid" class="btn-outline">Explore services <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES GRID ===== -->
+    <section class="services-grid-section" id="service-grid">
+        <div class="section-header">
+            <h2>Our sustainable bag services</h2>
+            <p>Choose from premium materials, custom branding, and eco‑conscious production.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="card-icon">🛍️</div>
+                <h3>Non‑Woven Bags</h3>
+                <p>Lightweight, durable & 100% recyclable. Ideal for retail, events, and daily use. Available in any
+                    color with full‑color printing.</p>
+                <div class="material-badge"><span class="badge">recyclable</span><span class="badge">custom print</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">🎨</div>
+                <h3>Canvas Bags</h3>
+                <p>Premium cotton canvas, sturdy and reusable. Perfect for corporate gifting, premium retail, and
+                    fashion. Multiple GSM options.</p>
+                <div class="material-badge"><span class="badge">organic cotton</span><span class="badge">heavy
+                        duty</span></div>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">🌾</div>
+                <h3>Jute & Juco</h3>
+                <p>Natural golden fibre, fully biodegradable. Juco blends combine jute with cotton for extra durability.
+                    Rustic elegance.</p>
+                <div class="material-badge"><span class="badge">biodegradable</span><span class="badge">natural</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">🧵</div>
+                <h3>Calico Cotton</h3>
+                <p>Soft, breathable, and unbleached. Great for promotional giveaways, farmers markets, and minimalist
+                    brands.</p>
+                <div class="material-badge"><span class="badge">unbleached</span><span class="badge">soft finish</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">✏️</div>
+                <h3>Custom Design & Branding</h3>
+                <p>Your logo, your artwork. We offer screen printing, digital transfer, and embroidery. End‑to‑end
+                    design support.</p>
+                <div class="material-badge"><span class="badge">vector ready</span><span class="badge">embroidery</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">📦</div>
+                <h3>Bulk & Corporate Orders</h3>
+                <p>Special pricing for large quantities. Fast turnaround, global shipping. Dedicated account manager for
+                    enterprises.</p>
+                <div class="material-badge"><span class="badge">wholesale</span><span class="badge">worldwide</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section class="process-section">
+        <div class="section-header">
+            <h2>How we bring your eco bag to life</h2>
+            <p>Simple, transparent, and sustainable from start to finish.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-number">1</div>
+                <h4>Consult</h4>
+                <p>Share your vision, quantity, and material preference via call or form.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">2</div>
+                <h4>Design & Sample</h4>
+                <p>We create a digital mockup and optional physical sample for approval.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">3</div>
+                <h4>Ethical Production</h4>
+                <p>Manufactured in eco‑certified facilities with fair labor practices.</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">4</div>
+                <h4>Delivery</h4>
+                <p>Secure packaging, carbon‑offset shipping. Delivered to your doorstep.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CUSTOM QUOTE / CTA ===== -->
+    <section class="custom-quote" id="custom-quote">
+        <div class="quote-content">
+            <h3>Need something <span class="quote-highlight">truly unique?</span></h3>
+            <p style="font-size:1.2rem; margin-bottom:1.2rem;">We specialize in custom shapes, multi‑color prints, and
+                sustainable add‑ons like recycled zippers and tags.</p>
+            <p><i class="fas fa-check-circle" style="color:#2e7d32;"></i> Minimum order quantity: 100+ pieces<br>
+                <i class="fas fa-check-circle" style="color:#2e7d32;"></i> Free design consultation & digital proof
+            </p>
+        </div>
+        <div class="quote-cta">
+            <a href="https://wa.me/94777222773" class="btn-primary" target="_blank"><i class="fab fa-whatsapp"></i>
+                Start your order</a>
+            <p style="margin-top:1rem; color:#3a5e3a;">or call <strong>+94 77 722 2773</strong></p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section ">
+        <div class="footer-content-wrapper">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Eco Creation</div>
+                    <div class="footer-tagline">Let's Talk</div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <div class="footer-column-title">Explore</div>
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="projects.html" class="footer-link">Projects</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                        <a href="question.html" class="footer-link">FAQ</a>
+                    </div>
+
+
+                    <div class="footer-column">
+                        <div class="footer-column-title">Follow us</div>
+
+                        <a href="#" class="footer-link">Facebook</a>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Support</div>
+                        <a href="#" class="footer-link">Help Center</a>
+                        <a href="#" class="footer-link">Contact</a>
+                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by <a
+                        href="https://influxyn.netlify.app/"
+                        style="text-decoration: none;font-weight: 800; color: aliceblue;">INFLUXYN</a> by YAGI Influx
+                    Solutions.</p>
+
+            </div>
+        </div>
+    </footer>
+    <div class="whatsapp-button" onclick="window.open('https://wa.me/94777222773', '_blank')">
+    </div>
+    <div class="up" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // LOADING SCREEN
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('preload');
+            }, 200);
+        });
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('preload');
+        }, 2500);
+
+        // MOBILE MENU
+        function toggleMobileMenu() {
+            document.getElementById('navigationMenu').classList.toggle('active');
+        }
+        document.addEventListener('click', function (e) {
+            const menu = document.getElementById('navigationMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 768) {
+                document.getElementById('navigationMenu')?.classList.remove('active');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+(function initScrollAnimations() {
+    const selectors = [
+        '.services-hero h1',
+        '.hero-sub',
+        '.hero-cta-group',
+        '.section-header',
+        '.service-card',
+        '.timeline-step',
+        '.custom-quote'
+    ];
+    
+    const animatedElements = document.querySelectorAll(selectors.join(','));
+    
+    animatedElements.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        
+        if (el.classList.contains('service-card')) {
+            const cards = document.querySelectorAll('.service-card');
+            const index = Array.from(cards).indexOf(el);
+            el.style.setProperty('--card-index', index);
+        }
+        
+        if (el.classList.contains('timeline-step')) {
+            const steps = document.querySelectorAll('.timeline-step');
+            const index = Array.from(steps).indexOf(el);
+            el.style.setProperty('--step-index', index);
+        }
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -20px 0px' });
+    
+    animatedElements.forEach(el => observer.observe(el));
+})();
+    </script>
+</body>
+
+</html>

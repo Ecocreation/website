@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>FAQ | Eco Creational – Eco‑Friendly Bags, Orders & Sustainability</title>
+    <meta name="description"
+        content="Find answers about our sustainable bags, custom orders, materials, shipping, and care. Everything you need to know before you order eco‑friendly bags.">
+    <meta name="keywords"
+        content="eco bag FAQ, sustainable bag questions, custom eco bag help, non-woven bag care, jute bag FAQ, eco friendly shipping">
+    <meta name="author" content="Eco Creational">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assests/logo.png">
+    <link rel="apple-touch-icon" href="assests/logo.png">
+
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET & GLOBAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fbfef9;
+            color: #1e2e1c;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body.preload {
+            overflow: hidden;
+        }
+
+        body.loaded {
+            overflow: auto;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        #eco-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f9f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.7s ease, visibility 0.7s;
+            pointer-events: none;
+        }
+
+        .loaded #eco-loader {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+        }
+
+        .leaf-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            animation: gentle-float 2.2s infinite ease-in-out;
+        }
+
+        .leaf-spinner svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 12px rgba(46, 125, 50, 0.15));
+        }
+
+        .leaf-path {
+            fill: #2e7d32;
+            transform-origin: center;
+            animation: leaf-pulse 1.8s infinite alternate;
+        }
+
+        .loader-logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #1b5e20;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .loader-tagline {
+            font-size: 16px;
+            color: #4a7c59;
+            margin-bottom: 24px;
+        }
+
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #a5d6a7;
+            border-radius: 50%;
+            animation: dot-bounce 1.4s infinite both;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+            background: #2e7d32;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+            background: #43a047;
+        }
+
+        .dot:nth-child(3) {
+            background: #66bb6a;
+        }
+
+        @keyframes gentle-float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes leaf-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        @keyframes dot-bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.6);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.2rem 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 40, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-icon img {
+            width: 150px;
+            height: 90px;
+        }
+
+        .navigation-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a1e;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #2e7d32;
+        }
+
+        .signup-button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(46, 125, 50, 0.2);
+            transition: 0.2s;
+        }
+
+        .signup-button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-bar {
+            width: 28px;
+            height: 3px;
+            background: #1e3a1e;
+            border-radius: 3px;
+        }
+
+        /* ===== FAQ HERO ===== */
+        .faq-hero {
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            background: linear-gradient(145deg, #eaf5e6 0%, #ffffff 90%);
+        }
+
+        .faq-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #143214;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-hero h1 span {
+            color: #2e7d32;
+            position: relative;
+        }
+
+        .faq-hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(46, 125, 50, 0.15);
+            z-index: -1;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #3a5e3a;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* ===== FAQ CATEGORY TABS ===== */
+        .faq-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 1px solid #cde2c5;
+            color: #2d512d;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: #2e7d32;
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        /* ===== FAQ ACCORDION ===== */
+        .faq-section {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+
+        .faq-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #1e3a1e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            border: 1px solid #e2f0da;
+            box-shadow: 0 6px 14px rgba(0, 30, 0, 0.02);
+            transition: 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: #b8dfb0;
+        }
+
+        .faq-question {
+            padding: 1.5rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e3a1e;
+        }
+
+        .faq-icon {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #2e7d32;
+            transition: transform 0.2s;
+        }
+
+        .faq-answer {
+            padding: 0 1.8rem 1.8rem;
+            color: #3a5e3a;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* ===== STILL HAVE QUESTIONS ===== */
+        .cta-banner {
+            background: #1b5e20;
+            margin: 2rem 5% 4rem;
+            padding: 3rem 2.5rem;
+            border-radius: 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-banner h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-light {
+            background: white;
+            color: #1b5e20;
+            padding: 1rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: #0e1f0e;
+            color: #d4e6d0;
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-column-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            display: block;
+            color: #b6d8ae;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid #2a472a;
+            margin-top: 2rem;
+        }
+
+        .up {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            font-size: 24px;
+            padding: 10px 15px;
+            background: #4e9e24;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* responsive */
+        @media (max-width: 768px) {
+            .navigation-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1.5rem;
+            }
+
+            .navigation-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .faq-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .faq-question {
+                padding: 1.2rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Footer Section */
+        .footer-section.full-height-section {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .footer-section {
+            background: #0e1f0e;
+            color: white;
+            padding: 50px 10px 20px 10px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+
+
+
+        .footer-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: auto;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand {
+            flex: 1;
+        }
+
+        .footer-logo {
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            font-size: clamp(16px, 2vw, 18px);
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #a5d71c;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: #a5d71c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 10px;
+            text-align: center;
+            color: #d3e6c5;
+            font-size: 14px;
+        }
+
+        /*message button*/
+        .whatsapp-button {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 80px;
+            width: 80px;
+            background: url("assests/whatsapp.png") center/contain no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 10px;
+            /* Animation */
+            animation: bounce 3.5s infinite;
+        }
+
+        /* Bounce Keyframes */
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .whatsapp-button:hover {
+            cursor: pointer;
+        }
+
+        /* Scroll Animation Styles */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays for children (optional) */
+.faq-category .faq-item {
+    transition-delay: calc(var(--index, 0) * 0.08s);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+    </style>
+</head>
+
+<body class="preload">
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="eco-loader">
+        <div class="loader-content">
+            <div class="leaf-spinner">
+                <svg viewBox="0 0 100 100">
+                    <path class="leaf-path"
+                        d="M50,10 C65,20 85,35 88,55 C91,75 78,85 60,88 C42,91 28,80 22,62 C16,44 22,25 38,16 C46,10 48,8 50,10 Z M50,15 C40,25 30,45 35,62 C40,76 52,82 65,78 C78,74 82,60 80,48 C78,36 65,20 50,15 Z"
+                        fill="#2E7D32" />
+                    <path d="M48,25 C40,35 35,50 38,62 C41,72 50,76 58,73 C66,70 70,60 69,50 C68,40 60,28 48,25 Z"
+                        fill="#66BB6A" opacity="0.7" />
+                </svg>
+            </div>
+            <div class="loader-logo-text">ECO CREATIONAL</div>
+            <div class="loader-tagline">answers you'll love</div>
+            <div class="progress-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-container">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <img src="assests/logo.png" alt="Eco Creational">
+            </div>
+        </div>
+        <nav>
+            <ul class="navigation-menu" id="navigationMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="question.html" class="nav-link" style="color:#2e7d32; font-weight:600;">FAQ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                
+            </ul>
+        </nav>
+        <button class="signup-button" onclick="window.open('https://wa.me/94777222773', '_blank')">Contact Us</button>
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="faq-hero">
+        <h1>Frequently <span>asked questions</span></h1>
+        <p class="hero-sub">Everything you need to know about our eco‑friendly bags, custom orders, and sustainable
+            practices.</p>
+    </section>
+
+    <!-- ===== TABS ===== -->
+    <div class="faq-tabs">
+        <button class="tab-btn active" data-category="all">All</button>
+        <button class="tab-btn" data-category="products">Products & Materials</button>
+        <button class="tab-btn" data-category="orders">Orders & Customization</button>
+        <button class="tab-btn" data-category="shipping">Shipping & Returns</button>
+        <button class="tab-btn" data-category="sustainability">Sustainability</button>
+    </div>
+
+    <!-- ===== FAQ ACCORDION ===== -->
+    <section class="faq-section">
+        <!-- PRODUCTS & MATERIALS -->
+        <div class="faq-category" data-category="products">
+            <h2 class="category-title"><i class="fas fa-leaf"></i> Products & Materials</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What materials are your eco bags made from?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    We use a variety of sustainable materials: non‑woven polypropylene (recyclable), natural cotton
+                    canvas, jute (biodegradable), juco (jute‑cotton blend), and calico cotton. All materials are chosen
+                    for durability and minimal environmental impact.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Are your bags really eco‑friendly?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! Our bags are designed to replace single‑use plastics. They are reusable, made from renewable or
+                    recycled materials, and many are biodegradable at end of life. We prioritize ethical production and
+                    low‑carbon manufacturing.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How do I care for my eco bag?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Most bags can be spot‑cleaned or gently hand‑washed with mild soap. Avoid machine washing canvas and
+                    jute to preserve shape. Air dry only. Each order includes care instructions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is the difference between non‑woven and canvas?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Non‑woven bags are lightweight, water‑resistant, and cost‑effective – great for events and retail.
+                    Canvas bags are heavier, made from cotton, and ideal for premium branding and daily use.
+                </div>
+            </div>
+        </div>
+
+        <!-- ORDERS & CUSTOMIZATION -->
+        <div class="faq-category" data-category="orders">
+            <h2 class="category-title"><i class="fas fa-shopping-bag"></i> Orders & Customization</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I order custom bags with my logo?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! We specialize in custom branding. You can provide your artwork, and we'll offer screen
+                    printing, digital transfer, or embroidery. Minimum order quantity starts at 100 pieces.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is the minimum order quantity (MOQ)?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    For custom printed bags, MOQ is usually 100 units. For plain stock bags, smaller quantities may be
+                    available. Contact us for specific requirements.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How long does production take?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Production typically takes 10–15 business days after design approval, plus shipping time. Bulk
+                    orders may require additional lead time. We'll provide a clear timeline upon inquiry.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do you offer samples?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we provide digital mockups free of charge. Physical samples can be arranged for a fee
+                    (refundable with bulk order). This ensures you're happy with material and print quality.
+                </div>
+            </div>
+        </div>
+
+        <!-- SHIPPING & RETURNS -->
+        <div class="faq-category" data-category="shipping">
+            <h2 class="category-title"><i class="fas fa-truck"></i> Shipping & Returns</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Do you ship worldwide?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we ship globally from Sri Lanka. Shipping costs and delivery times vary by destination. We use
+                    reliable couriers and offer carbon‑offset options.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>What is your return policy?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Because many items are custom‑made, returns are only accepted for manufacturing defects or errors on
+                    our part. Please inspect your order upon arrival and contact us within 7 days.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How much does shipping cost?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Shipping is calculated based on weight, volume, and destination. We'll provide a quote during the
+                    ordering process. Bulk orders often qualify for discounted freight.
+                </div>
+            </div>
+        </div>
+
+        <!-- SUSTAINABILITY -->
+        <div class="faq-category" data-category="sustainability">
+            <h2 class="category-title"><i class="fas fa-seedling"></i> Sustainability</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How do you ensure ethical production?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    We partner with certified workshops that provide fair wages, safe working conditions, and no child
+                    labor. We visit facilities regularly and maintain transparent supply chains.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Are your packaging materials eco‑friendly?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we use recycled cardboard, paper tape, and biodegradable poly bags when necessary. We minimize
+                    plastic in all our shipments.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I recycle my non‑woven bag?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Non‑woven polypropylene (PP) is recyclable in many facilities (check local guidelines). Better yet,
+                    reuse it as many times as possible before recycling.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STILL HAVE QUESTIONS ===== -->
+    <div class="cta-banner">
+        <h3>Still have questions?</h3>
+        <p style="font-size:1.2rem; opacity:0.9;">We're here to help you make the green choice.</p>
+        <a href="contact.html" class="btn-light"><i class="fas fa-envelope"></i> Contact our team</a>
+        <p style="margin-top:1.5rem;"><i class="fab fa-whatsapp"></i> or WhatsApp +94 77 722 2773</p>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer-section ">
+        <div class="footer-content-wrapper">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Eco Creation</div>
+                    <div class="footer-tagline">Let's Talk</div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <div class="footer-column-title">Explore</div>
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="projects.html" class="footer-link">Projects</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                        <a href="question.html" class="footer-link">FAQ</a>
+                    </div>
+
+
+                    <div class="footer-column">
+                        <div class="footer-column-title">Follow us</div>
+
+                        <a href="#" class="footer-link">Facebook</a>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Support</div>
+                        <a href="#" class="footer-link">Help Center</a>
+                        <a href="#" class="footer-link">Contact</a>
+                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by <a
+                        href="https://influxyn.netlify.app/"
+                        style="text-decoration: none;font-weight: 800; color: aliceblue;">INFLUXYN</a> by YAGI Influx
+                    Solutions.</p>
+
+            </div>
+        </div>
+    </footer>
+    <div class="whatsapp-button" onclick="window.open('https://wa.me/94777222773', '_blank')">
+    </div>
+    <div class="up" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // LOADER
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('preload');
+            }, 200);
+        });
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('preload');
+        }, 2500);
+
+        // MOBILE MENU
+        function toggleMobileMenu() {
+            document.getElementById('navigationMenu').classList.toggle('active');
+        }
+        document.addEventListener('click', function (e) {
+            const menu = document.getElementById('navigationMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // FAQ ACCORDION TOGGLE
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            if (!faqItem) return;
+
+            // Close others? (optional: comment out if you want independent)
+            // We'll keep independent toggles, but you can modify.
+            faqItem.classList.toggle('active');
+            const icon = faqItem.querySelector('.faq-icon');
+            if (faqItem.classList.contains('active')) {
+                icon.textContent = '−';
+            } else {
+                icon.textContent = '+';
+            }
+        }
+
+        // TAB FILTERING
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const categories = document.querySelectorAll('.faq-category');
+
+        function filterCategories(filterValue) {
+            categories.forEach(cat => {
+                const catType = cat.getAttribute('data-category');
+                if (filterValue === 'all' || filterValue === catType) {
+                    cat.style.display = 'block';
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
+        }
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.getAttribute('data-category');
+                filterCategories(filter);
+            });
+        });
+
+        // Initialize: show all
+        filterCategories('all');
+
+        // SCROLL ANIMATIONS (Intersection Observer)
+(function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll(
+        '.faq-category, .faq-item, .category-title, .cta-banner, .faq-hero h1, .hero-sub'
+    );
+    
+    // Add class to elements we want to animate
+    animatedElements.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        // For faq-items, add a custom property for staggered delay (optional)
+        if (el.classList.contains('faq-item')) {
+            const items = el.parentNode.querySelectorAll('.faq-item');
+            const index = Array.from(items).indexOf(el);
+            el.style.setProperty('--index', index);
+        }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: unobserve after animation to save performance
+                // observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -20px 0px'
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
+})();
+    </script>
+</body>
+
+</html>

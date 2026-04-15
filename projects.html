@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Our Projects | Eco Creational – Sustainable Bag Partnerships & Case Studies</title>
+    <meta name="description"
+        content="Explore Eco Creational's past projects: custom eco bags for universities, resorts, Nestlé, and more. Real impact, sustainable design.">
+    <meta name="keywords"
+        content="eco bag projects, sustainable case studies, custom bag partnerships, eco friendly collaborations, Sri Lanka green projects">
+    <meta name="author" content="Eco Creational">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assests/logo.png">
+    <link rel="apple-touch-icon" href="assests/logo.png">
+
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET & GLOBAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fbfef9;
+            color: #1e2e1c;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        body.preload {
+            overflow: hidden;
+        }
+
+        body.loaded {
+            overflow: auto;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        #eco-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f9f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.7s ease, visibility 0.7s;
+            pointer-events: none;
+        }
+
+        .loaded #eco-loader {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+        }
+
+        .leaf-spinner {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            animation: gentle-float 2.2s infinite ease-in-out;
+        }
+
+        .leaf-spinner svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 12px rgba(46, 125, 50, 0.15));
+        }
+
+        .leaf-path {
+            fill: #2e7d32;
+            transform-origin: center;
+            animation: leaf-pulse 1.8s infinite alternate;
+        }
+
+        .loader-logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #1b5e20;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .loader-tagline {
+            font-size: 16px;
+            color: #4a7c59;
+            margin-bottom: 24px;
+        }
+
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #a5d6a7;
+            border-radius: 50%;
+            animation: dot-bounce 1.4s infinite both;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+            background: #2e7d32;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+            background: #43a047;
+        }
+
+        .dot:nth-child(3) {
+            background: #66bb6a;
+        }
+
+        @keyframes gentle-float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes leaf-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        @keyframes dot-bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.6);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.2rem 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 40, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-icon img {
+            width: 150px;
+            height: 90px;
+        }
+
+        .navigation-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a1e;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #2e7d32;
+        }
+
+        .signup-button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(46, 125, 50, 0.2);
+            transition: 0.2s;
+        }
+
+        .signup-button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-bar {
+            width: 28px;
+            height: 3px;
+            background: #1e3a1e;
+            border-radius: 3px;
+        }
+
+        /* ===== PROJECTS HERO ===== */
+        .projects-hero {
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            background: linear-gradient(145deg, #eaf5e6 0%, #ffffff 90%);
+        }
+
+        .projects-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #143214;
+            margin-bottom: 0.75rem;
+        }
+
+        .projects-hero h1 span {
+            color: #2e7d32;
+            position: relative;
+        }
+
+        .projects-hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(46, 125, 50, 0.15);
+            z-index: -1;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #3a5e3a;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== PROJECTS GRID ===== */
+        .projects-grid-section {
+            padding: 3rem 5% 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #cde2c5;
+            color: #2d512d;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #2e7d32;
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 18px 30px -8px rgba(0, 30, 0, 0.06);
+            border: 1px solid #e2f0da;
+            transition: transform 0.25s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 36px -12px #1b5e2030;
+        }
+
+        .project-image {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.03);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 30, 0, 0.5), transparent);
+            opacity: 0;
+            transition: 0.3s;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .view-project-btn {
+            background: white;
+            color: #1b5e20;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            padding: 1.8rem 1.5rem 1.8rem;
+            flex: 1;
+        }
+
+        .partner-badge {
+            display: inline-block;
+            background: #e9f4e5;
+            color: #1e5e1e;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #143214;
+        }
+
+        .project-description {
+            color: #3a533a;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            background: #f0f8ec;
+            color: #2e7d32;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px dashed #c0ddb5;
+            padding-top: 1rem;
+            color: #527a52;
+            font-size: 0.9rem;
+        }
+
+        .impact-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            background: #1b5e20;
+            margin: 2rem 5% 4rem;
+            padding: 3.5rem 3rem;
+            border-radius: 60px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cta-banner h3 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .btn-light {
+            background: white;
+            color: #1b5e20;
+            padding: 1rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-light:hover {
+            background: #e9f4e5;
+            transform: scale(1.02);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: #0e1f0e;
+            color: #d4e6d0;
+            padding: 3rem 5% 1.5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-column-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            display: block;
+            color: #b6d8ae;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid #2a472a;
+            margin-top: 2rem;
+        }
+
+        .up {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            font-size: 24px;
+            padding: 10px 15px;
+            background: #4e9e24;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navigation-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1.5rem;
+            }
+
+            .navigation-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .projects-hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .cta-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Footer Section */
+        .footer-section.full-height-section {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .footer-section {
+            background: #0e1f0e;
+            color: white;
+            padding: 50px 10px 20px 10px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+
+
+
+        .footer-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: auto;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand {
+            flex: 1;
+        }
+
+        .footer-logo {
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-tagline {
+            font-size: clamp(16px, 2vw, 18px);
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #a5d71c;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: #a5d71c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 10px;
+            text-align: center;
+            color: #d3e6c5;
+            font-size: 14px;
+        }
+
+        /*message button*/
+        .whatsapp-button {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 80px;
+            width: 80px;
+            background: url("assests/whatsapp.png") center/contain no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 10px;
+            /* Animation */
+            animation: bounce 3.5s infinite;
+        }
+
+        /* Bounce Keyframes */
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .whatsapp-button:hover {
+            cursor: pointer;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delay for project cards */
+        .project-card {
+            transition-delay: calc(var(--card-index, 0) * 0.08s);
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-on-scroll {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="preload">
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="eco-loader">
+        <div class="loader-content">
+            <div class="leaf-spinner">
+                <svg viewBox="0 0 100 100">
+                    <path class="leaf-path"
+                        d="M50,10 C65,20 85,35 88,55 C91,75 78,85 60,88 C42,91 28,80 22,62 C16,44 22,25 38,16 C46,10 48,8 50,10 Z M50,15 C40,25 30,45 35,62 C40,76 52,82 65,78 C78,74 82,60 80,48 C78,36 65,20 50,15 Z"
+                        fill="#2E7D32" />
+                    <path d="M48,25 C40,35 35,50 38,62 C41,72 50,76 58,73 C66,70 70,60 69,50 C68,40 60,28 48,25 Z"
+                        fill="#66BB6A" opacity="0.7" />
+                </svg>
+            </div>
+            <div class="loader-logo-text">ECO CREATIONAL</div>
+            <div class="loader-tagline">loading impact stories</div>
+            <div class="progress-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header-container">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <img src="assests/logo.png" alt="Eco Creational">
+            </div>
+        </div>
+        <nav>
+            <ul class="navigation-menu" id="navigationMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link" style="color:#2e7d32; font-weight:600;">Projects</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="question.html" class="nav-link">Q&A</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="signup-button" onclick="window.open('https://wa.me/94777222773', '_blank')">Contact Us</button>
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+            <div class="mobile-menu-bar"></div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="projects-hero">
+        <h1>Projects that <span>speak green</span></h1>
+        <p class="hero-sub">Real collaborations, measurable impact — custom eco bags for universities, global brands,
+            and conscious communities.</p>
+    </section>
+
+    <!-- ===== PROJECTS GRID ===== -->
+    <section class="projects-grid-section">
+        <!-- simple filter (static demo) -->
+        <div class="filter-bar">
+            <button class="filter-btn active">All projects</button>
+            <button class="filter-btn">Universities</button>
+            <button class="filter-btn">Corporate</button>
+            <button class="filter-btn">Hospitality</button>
+        </div>
+
+        <div class="projects-grid" id="projectsContainer">
+            <!-- Project 1: UoC Indigenous Medicine -->
+            <div class="project-card" data-category="university">
+                <div class="project-image">
+                    <img src="assests/fb_pic2.jpg" alt="University of Colombo project">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View case study</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-university"></i> University of Colombo</span>
+                    <h3 class="project-title">Heritage‑Driven Innovation</h3>
+                    <p class="project-description">Vibrant eco‑friendly tote bags for the Annual Research Symposium of
+                        the Postgraduate Institute of Indigenous Medicine — promoting sustainability in academia.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Non‑woven</span>
+                        <span class="project-tag">Custom print</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> July 2025</span>
+                        <span class="impact-stat"><i class="fas fa-leaf"></i> 800+ bags</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Arcade of Aluminium -->
+            <div class="project-card" data-category="corporate">
+                <div class="project-image">
+                    <img src="assests/fb_pic7.jpeg" alt="Arcade of Aluminium">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-industry"></i> Arcade of Aluminium</span>
+                    <h3 class="project-title">Ditch Plastic, Go Vibrant</h3>
+                    <p class="project-description">Bold, custom‑designed eco bags that align with corporate identity —
+                        reducing plastic while elevating brand presence.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Canvas</span>
+                        <span class="project-tag">Branding</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> 2025</span>
+                        <span class="impact-stat"><i class="fas fa-recycle"></i> 100% recyclable</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: CIPM Sri Lanka -->
+            <div class="project-card" data-category="corporate">
+                <div class="project-image">
+                    <img src="assests/fb_pic5.jpg" alt="CIPM National HR Conference">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-users"></i> CIPM Sri Lanka</span>
+                    <h3 class="project-title">National HR Conference 2023</h3>
+                    <p class="project-description">Eco‑friendly tote bags, books, and pencils for a landmark HR event —
+                        sustainable promotional gifting at scale.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Calico cotton</span>
+                        <span class="project-tag">Event kits</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> 2023</span>
+                        <span class="impact-stat"><i class="fas fa-tree"></i> 1200+ items</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: University of Peradeniya -->
+            <div class="project-card" data-category="university">
+                <div class="project-image">
+                    <img src="assests/fb_pic8.jpeg" alt="University of Peradeniya">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-flask"></i> University of Peradeniya</span>
+                    <h3 class="project-title">Botanical Science Dept.</h3>
+                    <p class="project-description">Customized eco tote bags for the Department of Botanical Science —
+                        blending fashion with environmental responsibility.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Juco blend</span>
+                        <span class="project-tag">Embroidery</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> 2025</span>
+                        <span class="impact-stat"><i class="fas fa-seedling"></i> biodegradable</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Wattura Resort -->
+            <div class="project-card" data-category="hospitality">
+                <div class="project-image">
+                    <img src="assests/fb_pic9.jpeg" alt="Wattura Resort and Spa">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-hotel"></i> Wattura Resort & Spa</span>
+                    <h3 class="project-title">Luxury Laundry Bags</h3>
+                    <p class="project-description">Premium non‑woven laundry bags for a 5‑star eco‑resort. Custom
+                        options in cotton, canvas, and jute available.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Non‑woven</span>
+                        <span class="project-tag">Hospitality</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> 2025</span>
+                        <span class="impact-stat"><i class="fas fa-water"></i> plastic‑free</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Nestlé Lanka - Maggi -->
+            <div class="project-card" data-category="corporate">
+                <div class="project-image">
+                    <img src="assests/fb_pic1.jpg" alt="Nestle Maggi project">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-utensils"></i> Nestlé Lanka (Maggi)</span>
+                    <h3 class="project-title">Promotional Eco Bags</h3>
+                    <p class="project-description">Partnered to produce responsibly manufactured promotional bags,
+                        aligning with Nestlé's sustainability commitments.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Canvas</span>
+                        <span class="project-tag">Bulk order</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> 2025</span>
+                        <span class="impact-stat"><i class="fas fa-globe"></i> global brand</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7: additional project (placeholder) -->
+            <div class="project-card" data-category="university">
+                <div class="project-image">
+                    <img src="assests/fb_pic3.jpg" alt="University event">
+                    <div class="project-overlay">
+                        <a href="#" class="view-project-btn">View project</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="partner-badge"><i class="fas fa-graduation-cap"></i> Academic Partner</span>
+                    <h3 class="project-title">Green Campus Initiative</h3>
+                    <p class="project-description">Custom jute bags for a university sustainability drive — encouraging
+                        reusable alternatives on campus.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Jute</span>
+                        <span class="project-tag">Student led</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="far fa-calendar"></i> 2024</span>
+                        <span class="impact-stat"><i class="fas fa-users"></i> 500+ students</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <div class="cta-banner">
+        <h3>Ready to start your own sustainable project?</h3>
+        <a href="https://wa.me/94777222773" class="btn-light" target="_blank"><i class="fab fa-whatsapp"></i> Let's talk
+            →</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer-section ">
+        <div class="footer-content-wrapper">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Eco Creation</div>
+                    <div class="footer-tagline">Let's Talk</div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <div class="footer-column-title">Explore</div>
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="projects.html" class="footer-link">Projects</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                        <a href="question.html" class="footer-link">FAQ</a>
+                    </div>
+
+
+                    <div class="footer-column">
+                        <div class="footer-column-title">Follow us</div>
+
+                        <a href="#" class="footer-link">Facebook</a>
+                    </div>
+                    <div class="footer-column">
+                        <div class="footer-column-title">Support</div>
+                        <a href="#" class="footer-link">Help Center</a>
+                        <a href="#" class="footer-link">Contact</a>
+                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by <a
+                        href="https://influxyn.netlify.app/"
+                        style="text-decoration: none;font-weight: 800; color: aliceblue;">INFLUXYN</a> by YAGI Influx
+                    Solutions.</p>
+
+            </div>
+        </div>
+    </footer>
+    <div class="whatsapp-button" onclick="window.open('https://wa.me/94777222773', '_blank')">
+    </div>
+    <div class="up" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // LOADER
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('preload');
+            }, 200);
+        });
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('preload');
+        }, 2500);
+
+        // MOBILE MENU
+        function toggleMobileMenu() {
+            document.getElementById('navigationMenu').classList.toggle('active');
+        }
+        document.addEventListener('click', function (e) {
+            const menu = document.getElementById('navigationMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Simple filter interaction (visual demo)
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.innerText.toLowerCase();
+                const cards = document.querySelectorAll('.project-card');
+                cards.forEach(card => {
+                    if (filter === 'all projects') {
+                        card.style.display = 'flex';
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if ((filter.includes('universit') && category === 'university') ||
+                            (filter.includes('corporate') && category === 'corporate') ||
+                            (filter.includes('hospitality') && category === 'hospitality')) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+(function initScrollAnimations() {
+    const selectors = [
+        '.projects-hero h1',
+        '.hero-sub',
+        '.filter-bar',
+        '.project-card',
+        '.cta-banner'
+    ];
+    
+    const animatedElements = document.querySelectorAll(selectors.join(','));
+    
+    animatedElements.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        
+        // Stagger project cards
+        if (el.classList.contains('project-card')) {
+            const cards = document.querySelectorAll('.project-card');
+            const index = Array.from(cards).indexOf(el);
+            el.style.setProperty('--card-index', index);
+        }
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -20px 0px' });
+    
+    animatedElements.forEach(el => observer.observe(el));
+})();
+    </script>
+</body>
+
+</html>

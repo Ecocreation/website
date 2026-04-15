@@ -181,6 +181,31 @@
 </head>
 
 <body>
+     <!-- ========== LOADING SCREEN ========== -->
+    <div id="eco-loader">
+        <div class="loader-content">
+            <div class="leaf-spinner">
+                <!-- Eco leaf SVG with subtle animation -->
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path class="leaf-path" d="M50,10 C65,20 85,35 88,55 C91,75 78,85 60,88 C42,91 28,80 22,62 C16,44 22,25 38,16 C46,10 48,8 50,10 Z 
+                             M50,15 C40,25 30,45 35,62 C40,76 52,82 65,78 C78,74 82,60 80,48 C78,36 65,20 50,15 Z" 
+                          fill="#2E7D32" />
+                    <!-- inner highlight -->
+                    <path d="M48,25 C40,35 35,50 38,62 C41,72 50,76 58,73 C66,70 70,60 69,50 C68,40 60,28 48,25 Z" fill="#66BB6A" opacity="0.7" />
+                </svg>
+            </div>
+            <div class="loader-logo-text">ECO CREATIONAL</div>
+            <div class="loader-tagline">crafting a greener tomorrow</div>
+            <div class="progress-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    <!-- ========== END LOADING SCREEN ========== -->
+
+
     <!-- Header Section - Fixed -->
     <header class="header-container">
         <div class="logo-section">
@@ -191,11 +216,13 @@
         </div>
         <nav>
             <ul class="navigation-menu" id="navigationMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#goal" class="nav-link">Goal</a></li>
-                <li><a href="#service" class="nav-link">Service</a></li>
-                <li><a href="#question" class="nav-link">Q&A</a></li>
+                <li><a href="index.html" class="nav-link" style="color:#2e7d32; font-weight:600;">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="services.html" class="nav-link">Service</a></li>
+                <li><a href="question.html" class="nav-link">Q&A</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+
             </ul>
         </nav>
         <button class="signup-button" onclick="window.open('https://wa.me/94777222773', '_blank')">Contact Us</button>
@@ -1039,12 +1066,16 @@
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <div class="footer-column-title">Brand</div>
-                        <a href="#about" class="footer-link">About</a>
-                        <a href="#goal" class="footer-link">Goal</a>
-                        <a href="#service" class="footer-link">Service</a>
-                        <a href="#question" class="footer-link">Q&A</a>
+                        <div class="footer-column-title">Explore</div>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="services.html" class="footer-link">Services</a>
+                    <a href="projects.html" class="footer-link">Projects</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                    <a href="question.html" class="footer-link">FAQ</a>
                     </div>
+
+                    
                     <div class="footer-column">
                         <div class="footer-column-title">Follow us</div>
 
@@ -1060,7 +1091,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by YAGI Influx Solutions.</p>
+                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by <a href="https://influxyn.netlify.app/" style="text-decoration: none;font-weight: 800; color: aliceblue;">INFLUXYN</a> by YAGI Influx Solutions.</p>
 
             </div>
         </div>
@@ -1073,17 +1104,14 @@
     </div>
 
     <script>
+       // MOBILE MENU
         function toggleMobileMenu() {
-            const menu = document.getElementById('navigationMenu');
-            menu.classList.toggle('active');
+            document.getElementById('navigationMenu').classList.toggle('active');
         }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', function (e) {
             const menu = document.getElementById('navigationMenu');
             const toggle = document.querySelector('.mobile-menu-toggle');
-
-            if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+            if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
                 menu.classList.remove('active');
             }
         });
@@ -1275,6 +1303,22 @@
                 console.error('Contact form NOT found! Check the form ID.');
             }
         });
+
+        // ========== LOADING SCREEN LOGIC ==========
+        window.addEventListener('load', function() {
+            // Add a tiny delay to ensure smooth transition
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('preload');
+            }, 2000); // subtle delay for polished effect
+        });
+
+        // Fallback: if load event doesn't fire quickly, hide after 2 sec max
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('preload');
+        }, 2500);
+
     </script>
 </body>
 

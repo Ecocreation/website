@@ -1,79 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>404 – Page Not Found | Eco Creational</title>
+    <meta name="description"
+        content="This page could not be found. Return to Eco Creational for sustainable, eco‑friendly bags.">
+    <link rel="icon" type="image/png" href="assests/logo.png">
+    <link rel="apple-touch-icon" href="assests/logo.png">
+
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* Reset and body styling */
-        body {
+        /* ─── DESIGN TOKENS ──────────────────────────────────────────────── */
+        :root {
+            --sage: #7a9e7e;
+            --sage-light: #a8c5ac;
+            --sage-pale: #d4e8d6;
+            --sage-ultra: #eef6ef;
+            --forest: #2d5a34;
+            --forest-mid: #3d7444;
+            --gold: #c8a95a;
+            --gold-light: #e8d49a;
+            --gold-ultra: #fdf8ee;
+            --cream: #faf8f3;
+            --warm-white: #fffffe;
+            --text-dark: #1e2e22;
+            --text-mid: #4a6651;
+            --text-soft: #7a9a80;
+            --text-faint: #afc4b3;
+            --border: rgba(90, 143, 95, 0.15);
+            --border-gold: rgba(200, 169, 90, 0.25);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Jost', system-ui, sans-serif;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ─── RESET & BASE ───────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #f7f7f7;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            cursor: none;
+            min-height: 100vh;
+        }
+
+        /* ─── CUSTOM CURSOR ──────────────────────────────────────────────── */
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--forest);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s;
+            mix-blend-mode: multiply;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--forest);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.12s ease, width 0.3s var(--ease-out), height 0.3s var(--ease-out), opacity 0.3s;
+            opacity: 0.5;
+        }
+
+        body:has(a:hover) .cursor,
+        body:has(button:hover) .cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+        }
+
+        body:has(a:hover) .cursor-ring,
+        body:has(button:hover) .cursor-ring {
+            width: 52px;
+            height: 52px;
+            opacity: 0.25;
+        }
+
+        /* ─── LOADER ─────────────────────────────────────────────────────── */
+        #eco-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--cream);
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            text-align: center;
-            color: #333;
+            flex-direction: column;
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
         }
 
-        .container {
-            max-width: 500px;
+        #eco-loader.hide {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.03);
         }
 
-        h1 {
-            font-size: 10rem;
-            margin: 0;
-            color: #4CAF50;
+        .loader-leaf {
+            width: 64px;
+            height: 64px;
+            animation: loaderSpin 2.4s ease-in-out infinite;
+            margin-bottom: 24px;
         }
 
-        h2 {
-            font-size: 2rem;
-            margin: 20px 0;
-        }
-
-        p {
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #43a047;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 6rem;
+        @keyframes loaderSpin {
+            0% {
+                transform: rotate(-15deg) scale(0.95);
             }
-            h2 {
-                font-size: 1.5rem;
+
+            50% {
+                transform: rotate(15deg) scale(1.05);
+            }
+
+            100% {
+                transform: rotate(-15deg) scale(0.95);
+            }
+        }
+
+        .loader-name {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: var(--forest);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.3s var(--ease-out) forwards;
+        }
+
+        .loader-sub {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.5s var(--ease-out) forwards;
+        }
+
+        .loader-bar-wrap {
+            width: 120px;
+            height: 1px;
+            background: var(--sage-pale);
+            margin-top: 28px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 0.5s 0.6s forwards;
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: var(--forest);
+            width: 0;
+            animation: barFill 1.8s 0.7s var(--ease-out) forwards;
+        }
+
+        @keyframes barFill {
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ─── HEADER (fixed, consistent with main site) ──────────────────── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 990;
+            padding: 0 5%;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(250, 248, 243, 0.88);
+            backdrop-filter: blur(20px) saturate(1.4);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.4s;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 4px 40px rgba(45, 90, 52, 0.08);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-wrap img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--forest);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--text-mid);
+            text-decoration: none;
+            border-radius: 100px;
+            transition: all 0.25s;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover {
+            color: var(--forest);
+            background: var(--sage-ultra);
+        }
+
+        .nav-cta {
+            background: var(--forest);
+            color: #fff;
+            border: none;
+            padding: 11px 26px;
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            box-shadow: 0 4px 20px rgba(45, 90, 52, 0.25);
+        }
+
+        .nav-cta:hover {
+            background: var(--forest-mid);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(45, 90, 52, 0.35);
+        }
+
+        /* ─── 404 PAGE LAYOUT ────────────────────────────────────────────── */
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 60px;
+            background: linear-gradient(160deg, #f0f7f1 0%, var(--cream) 50%, var(--gold-ultra) 100%);
+            overflow: hidden;
+        }
+
+        /* hero grid */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+        }
+
+        /* big background watermark */
+        .bg-word {
+            position: absolute;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-style: italic;
+            color: transparent;
+            -webkit-text-stroke: 1.5px;
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
+            white-space: nowrap;
+            z-index: 0;
+        }
+
+        .bg-word-404 {
+            font-size: clamp(100px, 24vw, 340px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            letter-spacing: -6px;
+            -webkit-text-stroke-color: rgba(45, 90, 52, 0.06);
+        }
+
+        /* card */
+        .notfound-card {
+            position: relative;
+            z-index: 2;
+            max-width: 580px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 36px;
+            padding: 56px 48px;
+            box-shadow: 0 30px 80px rgba(45, 90, 52, 0.1), 0 0 0 1px var(--border);
+            text-align: center;
+            animation: cardFadeUp 0.85s var(--ease-out) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .notfound-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes cardFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .leaf-icon-wrap {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 28px;
+            background: var(--sage-ultra);
+            border: 2px solid var(--sage-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: iconBounce 0.55s var(--ease-out);
+        }
+
+        @keyframes iconBounce {
+            0% {
+                transform: scale(0);
+            }
+
+            55% {
+                transform: scale(1.12);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .leaf-icon {
+            font-size: 44px;
+            color: var(--forest);
+            line-height: 1;
+            opacity: 0.85;
+        }
+
+        .notfound-card h1 {
+            font-family: var(--font-serif);
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .notfound-card h1 em {
+            font-style: italic;
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        .notfound-card .subtitle {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text-mid);
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .notfound-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-soft);
+            margin-bottom: 32px;
+        }
+
+        /* button */
+        .btn-solid {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--forest);
+            color: #fff;
+            border: none;
+            padding: 15px 34px;
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.35s var(--ease-out);
+            box-shadow: 0 6px 28px rgba(45, 90, 52, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-solid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.12);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-solid:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(45, 90, 52, 0.35);
+        }
+
+        .btn-solid:hover::after {
+            opacity: 1;
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--forest);
+            border: 1.5px solid var(--sage-pale);
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-left: 12px;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--sage);
+            background: var(--sage-ultra);
+        }
+
+        /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor,
+            .cursor-ring {
+                display: none;
+            }
+
+            .notfound-card {
+                padding: 36px 24px;
+                border-radius: 28px;
+            }
+
+            .notfound-card h1 {
+                font-size: 42px;
+            }
+
+            .leaf-icon-wrap {
+                width: 76px;
+                height: 76px;
+            }
+
+            .leaf-icon {
+                font-size: 34px;
+            }
+
+            .btn-ghost {
+                margin-left: 0;
+                margin-top: 12px;
             }
         }
     </style>
-    
-    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2026/04/15/13/20260415131701-72YBO3UP.js" defer></script>
-    
 </head>
+
 <body>
-    <div class="container">
-        <h1>404</h1>
-        <h2>Oops! Page Not Found</h2>
-        <p>The page you are looking for might have been removed,<br> had its name changed, or is temporarily unavailable.</p>
-        <a href="index.html" class="btn">Go Back Home</a>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- LOADER -->
+    <div id="eco-loader">
+        <div class="loader-leaf">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M50,8 C67,18 88,36 90,57 C92,78 77,88 58,90 C39,92 24,80 18,61 C12,42 19,22 36,14 C44,9 47,6 50,8Z"
+                    fill="#2d5a34" />
+                <path d="M46,22 C37,34 32,52 36,65 C39,76 50,80 60,77 C70,73 74,62 72,50 C70,38 60,24 46,22Z"
+                    fill="#7a9e7e" opacity="0.7" />
+                <line x1="50" y1="20" x2="50" y2="85" stroke="rgba(255,255,255,0.3)" stroke-width="1"
+                    stroke-dasharray="3,4" />
+            </svg>
+        </div>
+        <div class="loader-name">Eco Creational</div>
+        <div class="loader-sub">page not found</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
+        </div>
     </div>
+
+    <!-- HEADER -->
+    <header class="header" id="mainHeader">
+        <div class="logo-wrap">
+            <img src="assests/logo.png" alt="Eco Creational">
+            <span class="logo-text">Eco Creational</span>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="services.html" class="nav-link">Service</a></li>
+                <li><a href="question.html" class="nav-link">Q&amp;A</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="nav-cta" onclick="window.open('https://wa.me/94777222773','_blank')">
+            <i class="fab fa-whatsapp"></i> Contact Us
+        </button>
+    </header>
+
+    <!-- ══════════════════════ 404 CONTENT ══════════════════════ -->
+    <div class="page-wrapper">
+        <div class="hero-grid"></div>
+        <span class="bg-word bg-word-404">404</span>
+
+        <div class="notfound-card" id="notfoundCard">
+            <div class="leaf-icon-wrap">
+                <span class="leaf-icon"><i class="fas fa-leaf"></i></span>
+            </div>
+            <h1>Oops! <em>Lost</em> in the green</h1>
+            <div class="subtitle">Page Not Found</div>
+            <p>The page you're looking for might have wandered off. But don't worry — our eco‑friendly bags are still
+                here for you.</p>
+            <a href="index.html" class="btn-solid"><i class="fas fa-home"></i> Back to Homepage</a>
+            <a href="contact.html" class="btn-ghost"><i class="fas fa-envelope"></i> Contact Us</a>
+        </div>
+    </div>
+
+    <script>
+        /* ── CURSOR ── */
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.1;
+            ringY += (mouseY - ringY) * 0.1;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        /* ── LOADER ── */
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('eco-loader').classList.add('hide'), 1500);
+        });
+        setTimeout(() => document.getElementById('eco-loader').classList.add('hide'), 2200);
+
+        /* ── CARD REVEAL ── */
+        setTimeout(() => {
+            document.getElementById('notfoundCard').classList.add('revealed');
+        }, 500);
+
+        /* ── HEADER SCROLL ── */
+        window.addEventListener('scroll', () => {
+            document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 20);
+        });
+    </script>
 </body>
+
 </html>

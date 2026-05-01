@@ -5,7 +5,3064 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco Creational</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"><!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Creational | Sustainable Eco-Friendly Bags</title>
+  <link rel="icon" type="image/png" href="assests/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+  <script>(function () { emailjs.init('tVmvNGUKXRhqvsVzU'); })();</script>
+  
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/04/15/13/20260415131701-72YBO3UP.js" defer></script>
+    
+
+  <style>
+    /* ─── DESIGN TOKENS ──────────────────────────────────────────────── */
+    :root {
+      --sage: #7a9e7e;
+      --sage-light: #a8c5ac;
+      --sage-pale: #d4e8d6;
+      --sage-ultra: #eef6ef;
+      --forest: #2d5a34;
+      --forest-mid: #3d7444;
+      --leaf: #5a8f5f;
+      --gold: #c8a95a;
+      --gold-light: #e8d49a;
+      --gold-ultra: #fdf8ee;
+      --cream: #faf8f3;
+      --warm-white: #fffffe;
+      --text-dark: #1e2e22;
+      --text-mid: #4a6651;
+      --text-soft: #7a9a80;
+      --text-faint: #afc4b3;
+      --border: rgba(90, 143, 95, 0.15);
+      --border-gold: rgba(200, 169, 90, 0.25);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Jost', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+    }
+
+    /* ─── RESET & BASE ───────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ─── CUSTOM CURSOR ──────────────────────────────────────────────── */
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--forest);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s;
+      mix-blend-mode: multiply;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--forest);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease, width 0.3s var(--ease-out), height 0.3s var(--ease-out), opacity 0.3s;
+      opacity: 0.5;
+    }
+
+    body:has(a:hover) .cursor,
+    body:has(button:hover) .cursor {
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 52px;
+      height: 52px;
+      opacity: 0.25;
+    }
+
+    /* ─── LOADER ─────────────────────────────────────────────────────── */
+    #eco-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+
+    #eco-loader.hide {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.03);
+    }
+
+    .loader-leaf {
+      width: 64px;
+      height: 64px;
+      animation: loaderSpin 2.4s ease-in-out infinite;
+      margin-bottom: 24px;
+    }
+
+    @keyframes loaderSpin {
+      0% {
+        transform: rotate(-15deg) scale(0.95);
+      }
+
+      50% {
+        transform: rotate(15deg) scale(1.05);
+      }
+
+      100% {
+        transform: rotate(-15deg) scale(0.95);
+      }
+    }
+
+    .loader-name {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 8px;
+      color: var(--forest);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s var(--ease-out) forwards;
+    }
+
+    .loader-sub {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s var(--ease-out) forwards;
+    }
+
+    .loader-bar-wrap {
+      width: 120px;
+      height: 1px;
+      background: var(--sage-pale);
+      margin-top: 28px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.6s forwards;
+    }
+
+    .loader-bar {
+      height: 100%;
+      background: var(--forest);
+      width: 0;
+      animation: barFill 1.8s 0.7s var(--ease-out) forwards;
+    }
+
+    @keyframes barFill {
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .delay-1 {
+      transition-delay: 0.1s !important;
+    }
+
+    .delay-2 {
+      transition-delay: 0.2s !important;
+    }
+
+    .delay-3 {
+      transition-delay: 0.3s !important;
+    }
+
+    .delay-4 {
+      transition-delay: 0.4s !important;
+    }
+
+    .delay-5 {
+      transition-delay: 0.55s !important;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 990;
+      padding: 0 5%;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250, 248, 243, 0.88);
+      backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.4s;
+    }
+
+    .header.scrolled {
+      box-shadow: 0 4px 40px rgba(45, 90, 52, 0.08);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-wrap img {
+      width: 100px;
+      height:100px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--forest);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 8px 15px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--text-mid);
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.25s;
+      text-transform: uppercase;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--forest);
+      background: var(--sage-ultra);
+    }
+
+    .nav-cta {
+      background: var(--forest);
+      color: #fff;
+      border: none;
+      padding: 11px 26px;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 4px 20px rgba(45, 90, 52, 0.25);
+    }
+
+    .nav-cta:hover {
+      background: var(--forest-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(45, 90, 52, 0.35);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ─── BG TEXT WATERMARK ──────────────────────────────────────────── */
+    .bg-word {
+      position: absolute;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1.5px;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .bg-word-forest {
+      -webkit-text-stroke-color: rgba(45, 90, 52, 0.08);
+    }
+
+    .bg-word-sage {
+      -webkit-text-stroke-color: rgba(122, 158, 126, 0.12);
+    }
+
+    .bg-word-gold {
+      -webkit-text-stroke-color: rgba(200, 169, 90, 0.1);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding-top: 76px;
+      background: linear-gradient(160deg, #f0f7f1 0%, var(--cream) 50%, var(--gold-ultra) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* animated leaf particles */
+    .leaf-particle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      animation: leafFloat linear infinite;
+    }
+
+    .leaf-particle svg {
+      display: block;
+    }
+
+    @keyframes leafFloat {
+      0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg) scale(0.6);
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      90% {
+        opacity: 0.4;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-120vh) rotate(360deg) scale(1);
+      }
+    }
+
+    /* hero grid lines */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    .hero-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 80px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    /* BIG bg text in hero */
+    .hero .bg-word {
+      font-size: clamp(130px, 24vw, 340px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      letter-spacing: -6px;
+      -webkit-text-stroke: 2px rgba(45, 90, 52, 0.06);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border-gold);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--forest-mid);
+      margin-bottom: 28px;
+      box-shadow: 0 2px 16px rgba(200, 169, 90, 0.15);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200, 169, 90, 0.25);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 3px rgba(200, 169, 90, 0.25);
+      }
+
+      50% {
+        box-shadow: 0 0 0 7px rgba(200, 169, 90, 0.08);
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(44px, 5.5vw, 78px);
+      font-weight: 300;
+      line-height: 1.06;
+      letter-spacing: -2px;
+      color: var(--text-dark);
+      margin-bottom: 28px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--forest);
+      font-weight: 600;
+    }
+
+    .hero-title .stroke-text {
+      -webkit-text-stroke: 1px var(--forest);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--text-mid);
+      max-width: 460px;
+      margin-bottom: 40px;
+    }
+
+    .hero-desc strong {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--forest);
+      color: #fff;
+      border: none;
+      padding: 15px 34px;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.35s var(--ease-out);
+      box-shadow: 0 6px 28px rgba(45, 90, 52, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-solid::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.12);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-solid:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(45, 90, 52, 0.38);
+    }
+
+    .btn-solid:hover::after {
+      opacity: 1;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--forest);
+      border: 1.5px solid var(--sage-pale);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--sage);
+      background: var(--sage-ultra);
+    }
+
+    /* hero stats */
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+    }
+
+    .hstat {
+      flex: 1;
+      padding: 18px 16px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hstat+.hstat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .hstat-val {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--forest);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .hstat-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-soft);
+    }
+
+    /* hero visual */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-img-frame {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, var(--sage-ultra), rgba(255, 255, 255, 0.6));
+      box-shadow: 0 30px 80px rgba(45, 90, 52, 0.12), 0 0 0 1px var(--border);
+    }
+
+    .hero-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 0;
+    }
+
+    /* floating chips */
+    .chip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 16px;
+      box-shadow: 0 8px 32px rgba(45, 90, 52, 0.12);
+      z-index: 4;
+      animation: chipFloat ease-in-out infinite;
+    }
+
+    @keyframes chipFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .chip-1 {
+      top: 20px;
+      right: -16px;
+      animation-duration: 3.5s;
+    }
+
+    .chip-2 {
+      bottom: 100px;
+      left: -20px;
+      animation-duration: 4.2s;
+      animation-delay: 0.8s;
+    }
+
+    .chip-3 {
+      bottom: 20px;
+      right: 24px;
+      animation-duration: 3.8s;
+      animation-delay: 0.4s;
+    }
+
+    .chip-lbl {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-soft);
+      margin-bottom: 3px;
+    }
+
+    .chip-val {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .chip-icon {
+      font-size: 18px;
+      margin-right: 6px;
+    }
+
+    /* decorative corner */
+    .corner-deco {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 1.5px solid var(--sage-pale);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .corner-deco-1 {
+      top: -20px;
+      left: -20px;
+    }
+
+    .corner-deco-2 {
+      bottom: -30px;
+      right: -30px;
+      width: 140px;
+      height: 140px;
+      border-color: var(--border-gold);
+    }
+
+    /* ─── SECTION SHARED ─────────────────────────────────────────────── */
+    .section {
+      padding: 130px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3.5px;
+      color: var(--forest-mid);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1.5px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .section-h {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .section-h em {
+      font-style: italic;
+      color: var(--forest);
+      font-weight: 600;
+    }
+
+    .section-body-text {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-mid);
+      max-width: 520px;
+    }
+
+    /* ─── ABOUT SECTION ─────────────────────────────────────────────── */
+    .about-section {
+      background: var(--warm-white);
+    }
+
+    .about-section .bg-word {
+      font-size: clamp(100px, 20vw, 280px);
+      top: 50%;
+      right: -2%;
+      transform: translateY(-50%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .feature-strip {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .feat {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 28px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.35s var(--ease-out);
+      position: relative;
+      cursor: default;
+    }
+
+    .feat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: linear-gradient(90deg, var(--sage-ultra), transparent);
+      transition: width 0.4s var(--ease-out);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .feat:hover::before {
+      width: 100%;
+    }
+
+    .feat:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .feat-icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      background: var(--sage-ultra);
+      border: 1px solid var(--sage-pale);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feat:hover .feat-icon {
+      background: var(--sage-pale);
+      transform: scale(1.08) rotate(-5deg);
+    }
+
+    .feat-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feat-body h3 {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .feat-body p {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--text-mid);
+    }
+
+    /* about image */
+    .about-img-col {
+      position: relative;
+    }
+
+    .about-img-main {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(45, 90, 52, 0.14);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .about-img-main img {
+      width: 100%;
+      display: block;
+      height: 560px;
+      object-fit: cover;
+    }
+
+    .about-img-main::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(45, 90, 52, 0.4));
+    }
+
+    .about-img-tag {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 32px rgba(45, 90, 52, 0.12);
+    }
+
+    .about-img-tag .big {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .about-img-tag .small {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    .about-img-deco {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border: 1.5px dashed var(--sage-pale);
+      border-radius: 50%;
+    }
+
+    /* ─── CATEGORIES ────────────────────────────────────────────────── */
+    .cat-section {
+      background: linear-gradient(160deg, var(--sage-ultra) 0%, var(--cream) 60%, var(--gold-ultra) 100%);
+    }
+
+    .cat-section .bg-word {
+      font-size: clamp(90px, 18vw, 260px);
+      bottom: -4%;
+      left: -2%;
+      -webkit-text-stroke-color: rgba(45, 90, 52, 0.07);
+    }
+
+    .cat-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .cat-top-right {
+      color: var(--text-soft);
+      font-size: 15px;
+      max-width: 340px;
+      line-height: 1.75;
+    }
+
+    /* scrolling marquee track */
+    .marquee-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-wrap::before,
+    .marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 100px;
+      pointer-events: none;
+    }
+
+    .marquee-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--sage-ultra), transparent);
+    }
+
+    .marquee-wrap::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--sage-ultra), transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 20px;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .cat-card {
+      flex: 0 0 230px;
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(45, 90, 52, 0.08);
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
+      cursor: pointer;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 60px rgba(45, 90, 52, 0.18);
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .cat-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .cat-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(27, 55, 32, 0.85) 0%, rgba(27, 55, 32, 0.1) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+
+    .cat-num {
+      font-size: 10px;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .cat-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    /* ─── GOAL / MANIFESTO ──────────────────────────────────────────── */
+    .goal-section {
+      background: var(--warm-white);
+    }
+
+    .goal-section .bg-word-top {
+      font-size: clamp(90px, 18vw, 240px);
+      top: -2%;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-text-stroke-color: rgba(200, 169, 90, 0.1);
+    }
+
+    .goal-section .bg-word-bot {
+      font-size: clamp(90px, 18vw, 240px);
+      bottom: -2%;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-text-stroke-color: rgba(45, 90, 52, 0.06);
+    }
+
+    .goal-grid {
+      display: grid;
+      grid-template-columns: 1fr 100px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .goal-block {}
+
+    .goal-word-big {
+      font-family: var(--font-serif);
+      font-size: clamp(64px, 10vw, 120px);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1;
+      letter-spacing: -4px;
+      color: var(--forest);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .goal-text {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text-mid);
+    }
+
+    .goal-mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .goal-line {
+      width: 1px;
+      height: 120px;
+      background: linear-gradient(transparent, var(--sage-pale), transparent);
+    }
+
+    .goal-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--sage-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      animation: spinSlow 8s linear infinite;
+    }
+
+    @keyframes spinSlow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ─── PROJECTS ──────────────────────────────────────────────────── */
+    .projects-section {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+    }
+
+    .projects-section .bg-word {
+      font-size: clamp(90px, 18vw, 260px);
+      top: 0;
+      right: -2%;
+      -webkit-text-stroke-color: rgba(45, 90, 52, 0.05);
+    }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 56px;
+    }
+
+    .proj-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(45, 90, 52, 0.06);
+      transition: all 0.4s var(--ease-out);
+    }
+
+    .proj-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(45, 90, 52, 0.14);
+    }
+
+    .proj-img {
+      height: 210px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .proj-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+      display: block;
+    }
+
+    .proj-card:hover .proj-img img {
+      transform: scale(1.08);
+    }
+
+    .proj-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(27, 55, 32, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proj-card:hover .proj-img-overlay {
+      opacity: 1;
+    }
+
+    .proj-btn {
+      padding: 9px 22px;
+      background: #fff;
+      color: var(--forest);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transform: translateY(10px);
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .proj-card:hover .proj-btn {
+      transform: none;
+    }
+
+    .proj-body {
+      padding: 24px 22px;
+    }
+
+    .proj-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .proj-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--forest-mid);
+      font-weight: 700;
+    }
+
+    .proj-date {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    .proj-body h3 {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .proj-body p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
+
+    .proj-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .proj-chip {
+      background: var(--sage-ultra);
+      color: var(--forest-mid);
+      border: 1px solid var(--sage-pale);
+      padding: 4px 11px;
+      border-radius: 100px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── STATS MARQUEE BAND ────────────────────────────────────────── */
+    .stats-band {
+      padding: 0;
+      background: var(--forest);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stats-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px, transparent 60px);
+    }
+
+    .stats-band-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .sband-item {
+      padding: 52px 32px;
+      text-align: center;
+      position: relative;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sband-item:last-child {
+      border-right: none;
+    }
+
+    .sband-val {
+      font-family: var(--font-serif);
+      font-size: 58px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 6px;
+    }
+
+    .sband-val span {
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .sband-lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────────── */
+    .faq-section {
+      background: var(--cream);
+    }
+
+    .faq-section .bg-word {
+      font-size: clamp(90px, 18vw, 240px);
+      top: 50%;
+      left: -2%;
+      transform: translateY(-50%);
+      -webkit-text-stroke-color: rgba(200, 169, 90, 0.1);
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-list {
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      cursor: pointer;
+      transition: color 0.25s;
+    }
+
+    .faq-q:hover {
+      color: var(--forest);
+    }
+
+    .faq-q h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    .faq-toggle {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      border: 1.5px solid var(--sage-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--forest);
+      transition: all 0.35s var(--ease-out);
+      font-weight: 300;
+    }
+
+    .faq-item.open .faq-toggle {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-mid);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease-out), padding 0.3s;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-bottom: 22px;
+    }
+
+    /* faq card */
+    .faq-right-card {
+      position: sticky;
+      top: 100px;
+      background: linear-gradient(145deg, var(--forest), var(--forest-mid));
+      border-radius: 28px;
+      padding: 52px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-right-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .faq-right-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(200, 169, 90, 0.12);
+    }
+
+    .faq-card-eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-card-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      display: block;
+    }
+
+    .faq-card-h {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 300;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .faq-card-h strong {
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .faq-card-p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .faq-card-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--text-dark);
+      padding: 12px 26px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 11px 22px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-ghost-white:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #fff;
+    }
+
+    /* ─── TESTIMONIALS ──────────────────────────────────────────────── */
+    .testi-section {
+      background: var(--warm-white);
+    }
+
+    .testi-section .bg-word {
+      font-size: clamp(90px, 18vw, 260px);
+      bottom: -2%;
+      right: -2%;
+      -webkit-text-stroke-color: rgba(45, 90, 52, 0.05);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 56px;
+    }
+
+    .testi-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      transition: all 0.4s var(--ease-out);
+    }
+
+    .testi-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(45, 90, 52, 0.1);
+    }
+
+    .testi-badge {
+      display: inline-block;
+      background: var(--sage-ultra);
+      color: var(--forest-mid);
+      border: 1px solid var(--sage-pale);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+
+    .testi-quote {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--text-dark);
+      margin-bottom: 28px;
+    }
+
+    .testi-quot-mark {
+      font-family: var(--font-serif);
+      font-size: 64px;
+      line-height: 0.6;
+      color: var(--sage-pale);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .testi-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .testi-org {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-dark);
+    }
+
+    .testi-role {
+      font-size: 12.5px;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .testi-rating-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 0;
+    }
+
+    .rating-big {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+    }
+
+    .rating-info .stars {
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 3px;
+    }
+
+    .rating-info .sub {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    /* ─── CONTACT ───────────────────────────────────────────────────── */
+    .contact-section {
+      background: linear-gradient(160deg, var(--sage-ultra) 0%, var(--warm-white) 60%);
+    }
+
+    .contact-section .bg-word {
+      font-size: clamp(90px, 18vw, 260px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      -webkit-text-stroke-color: rgba(45, 90, 52, 0.07);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .cinfo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+    }
+
+    .cinfo:hover {
+      background: white;
+      border-color: var(--sage);
+      transform: translateX(6px);
+      box-shadow: 0 8px 32px rgba(45, 90, 52, 0.1);
+    }
+
+    .cinfo-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: var(--sage-ultra);
+      border: 1px solid var(--sage-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      font-size: 16px;
+    }
+
+    .cinfo-lbl {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-soft);
+      margin-bottom: 3px;
+    }
+
+    .cinfo-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .contact-form {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 52px 48px;
+      box-shadow: 0 16px 60px rgba(45, 90, 52, 0.08);
+    }
+
+    .contact-form h3 {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 32px;
+      letter-spacing: -0.5px;
+    }
+
+    .fg {
+      margin-bottom: 16px;
+    }
+
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      padding: 13px 18px;
+      background: var(--sage-ultra);
+      border: 1.5px solid transparent;
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.25s;
+      appearance: none;
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: var(--text-faint);
+    }
+
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: var(--sage);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(122, 158, 126, 0.1);
+    }
+
+    .fg select option {
+      background: white;
+      color: var(--text-dark);
+    }
+
+    .fg textarea {
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--forest);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.35s var(--ease-out);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 28px rgba(45, 90, 52, 0.25);
+    }
+
+    .submit-btn:hover {
+      background: var(--forest-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(45, 90, 52, 0.35);
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-faint);
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--text-dark);
+      padding: 80px 5% 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer .bg-word {
+      font-size: clamp(80px, 18vw, 220px);
+      bottom: -2%;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-text-stroke-color: rgba(255, 255, 255, 0.04);
+    }
+
+    .footer-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .footer-logo-text {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo-text em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 28px;
+      max-width: 280px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .fsoc {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .fsoc:hover {
+      background: var(--forest);
+      border-color: var(--sage);
+      color: white;
+    }
+
+    .footer-col-h {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 22px;
+    }
+
+    .footer-link {
+      display: block;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.28);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-bottom a:hover {
+      color: white;
+    }
+
+    /* ─── FIXED BUTTONS ─────────────────────────────────────────────── */
+    .wa-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 900;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+
+    .wa-btn:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 12px 36px rgba(37, 211, 102, 0.55);
+    }
+
+    .up-btn {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      z-index: 900;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-mid);
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(45, 90, 52, 0.12);
+      transition: all 0.3s;
+    }
+
+    .up-btn:hover {
+      background: var(--forest);
+      color: white;
+      border-color: var(--forest);
+      transform: translateY(-3px);
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .goal-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .goal-mid {
+        display: none;
+      }
+
+      .proj-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faq-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-band-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header nav {
+        display: none;
+      }
+
+      .header nav.active {
+        display: block;
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: rgba(250, 248, 243, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 5%;
+        z-index: 989;
+      }
+
+      .header nav.active .nav-list {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-band-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+
+      .hstat+.hstat::before {
+        width: 80%;
+        height: 1px;
+        top: 0;
+        left: 10%;
+        bottom: auto;
+      }
+
+      .goal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-top {
+        flex-direction: column;
+        align-items: baseline;
+        text-align: left;
+      }
+
+      .contact-form {
+        padding: 28px;
+      }
+
+      .chip-1 {
+        right: 0;
+        top: 10px;
+      }
+
+      .chip-2 {
+        left: 0;
+        bottom: 60px;
+      }
+
+      .cursor,
+      .cursor-ring {
+        display: none;
+      }
+
+      body {
+        cursor: auto;
+      }
+
+      .sband-item {
+        padding: 36px 20px;
+      }
+
+      .sband-val {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- LOADER -->
+  <div id="eco-loader">
+    <div class="loader-leaf">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50,8 C67,18 88,36 90,57 C92,78 77,88 58,90 C39,92 24,80 18,61 C12,42 19,22 36,14 C44,9 47,6 50,8Z"
+          fill="#2d5a34" />
+        <path d="M46,22 C37,34 32,52 36,65 C39,76 50,80 60,77 C70,73 74,62 72,50 C70,38 60,24 46,22Z" fill="#7a9e7e"
+          opacity="0.7" />
+        <line x1="50" y1="20" x2="50" y2="85" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="3,4" />
+      </svg>
+    </div>
+    <div class="loader-name">Eco Creational</div>
+    <div class="loader-sub">crafting a greener tomorrow</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="logo-wrap">
+      <img src="assests/logo.png" alt="Eco Creational">
+      <span class="logo-text">Eco Creational</span>
+    </div>
+    <nav id="navMenu">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="services.html" class="nav-link">Service</a></li>
+        <li><a href="question.html" class="nav-link">Q&amp;A</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-cta" onclick="window.open('https://wa.me/94777222773','_blank')">
+      <i class="fab fa-whatsapp"></i> Contact Us
+    </button>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════ HERO ══════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+
+    <!-- bg watermark word -->
+    <span class="bg-word bg-word-forest">ECO</span>
+
+    <!-- animated leaf particles (JS injects) -->
+    <div id="leafParticles"></div>
+
+    <div class="hero-inner">
+      <!-- LEFT -->
+      <div class="hero-text">
+        <div class="hero-badge reveal">
+          <span class="hero-badge-dot"></span>
+          Sustainable Bag Studio — Sri Lanka
+        </div>
+        <h1 class="hero-title reveal delay-1">
+          We craft<br>
+          <em>eco-friendly</em><br>
+          bags for a<br>
+          <span class="stroke-text">greener world</span>
+        </h1>
+        <p class="hero-desc reveal delay-2">
+          Empower your lifestyle with <strong>sustainable choices</strong> and conscious style. Our bags blend fashion,
+          function, and genuine care for the planet.
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <button class="btn-solid" onclick="window.open('https://wa.me/94777222773','_blank')">
+            <i class="fas fa-leaf"></i> Get in Touch
+          </button>
+          <button class="btn-ghost"
+            onclick="document.getElementById('testimonial').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-play" style="font-size:10px;"></i> See Reviews
+          </button>
+        </div>
+        <div class="hero-stats reveal delay-4">
+          <div class="hstat">
+            <div class="hstat-val">98.5%</div>
+            <div class="hstat-lbl">Eco Score</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-val">2.4K+</div>
+            <div class="hstat-lbl">Bags Sold</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-val">15t</div>
+            <div class="hstat-lbl">CO₂ Saved</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="hero-visual reveal-right delay-2">
+        <div class="corner-deco corner-deco-1"></div>
+        <div class="corner-deco corner-deco-2"></div>
+        <div class="hero-img-frame">
+          <img src="assests/Save the Earth-amico (1).png" alt="Eco Living">
+        </div>
+        <div class="chip chip-1">
+          <div class="chip-lbl">Eco Score</div>
+          <div class="chip-val">98.5%</div>
+        </div>
+        <div class="chip chip-2">
+          <div class="chip-lbl">Bags Sold</div>
+          <div class="chip-val">2,400+</div>
+        </div>
+        <div class="chip chip-3">
+          <div class="chip-lbl">CO₂ Saved</div>
+          <div class="chip-val">15.2 t</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ ABOUT ══════════════════════ -->
+  <section class="section about-section" id="about">
+    <span class="bg-word bg-word-sage">GREEN</span>
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow reveal">Our Philosophy</div>
+          <h2 class="section-h reveal delay-1">Your life for a<br><em>greener future</em></h2>
+          <p class="section-body-text reveal delay-2">We go beyond bags. We're building a movement of eco-conscious
+            individuals who believe every small choice matters for the planet.</p>
+          <div class="feature-strip">
+            <div class="feat reveal delay-2">
+              <div class="feat-icon">♻️</div>
+              <div class="feat-body">
+                <h3>Sustainable Products</h3>
+                <p>Eco-friendly bags that reduce plastic waste without compromising on style or functionality. Each
+                  product supports a cleaner planet.</p>
+              </div>
+            </div>
+            <div class="feat reveal delay-3">
+              <div class="feat-icon">🌱</div>
+              <div class="feat-body">
+                <h3>Eco-Conscious Living</h3>
+                <p>We encourage mindful habits and provide tools that make sustainable living easy, practical, and part
+                  of everyday life.</p>
+              </div>
+            </div>
+            <div class="feat reveal delay-4">
+              <div class="feat-icon">🤝</div>
+              <div class="feat-body">
+                <h3>Community for the Planet</h3>
+                <p>Join a growing movement of eco-conscious individuals building a future rooted in responsibility and
+                  care for the environment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-img-col reveal-right">
+          <div class="about-img-deco"></div>
+          <div class="about-img-main">
+            <img src="assests/Shopping bag-bro.png" alt="Eco Bag craft">
+            <div class="about-img-tag">
+              <div class="big">5,000+</div>
+              <div class="small">Bags Created</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ CATEGORIES ══════════════════════ -->
+  <section class="section cat-section" id="service">
+    <span class="bg-word bg-word-sage">BAGS</span>
+    <div class="container">
+      <div class="cat-top">
+        <div>
+          <div class="eyebrow reveal">Our Collections</div>
+          <h2 class="section-h reveal delay-1">Eco <em>Creations</em></h2>
+        </div>
+        <p class="cat-top-right reveal delay-2">Sustainable bags crafted from nature's finest materials. All designed
+          with the planet in mind.</p>
+      </div>
+      <div class="marquee-wrap reveal">
+        <div class="marquee-track">
+          <!-- set 1 -->
+          <div class="cat-card">
+            <img src="assests/non_woowen.webp" alt="Non-Woven Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">01 — Category</div>
+              <div class="cat-name">Non-Woven Bags</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/Canvas.webp" alt="Canvas Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">02 — Category</div>
+              <div class="cat-name">Canvas Bags</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/JUCO.jpg" alt="Jute & Juco Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">03 — Category</div>
+              <div class="cat-name">Jute &amp; Juco Bags</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/calico_cotton.jpg" alt="Calico Cotton Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">04 — Category</div>
+              <div class="cat-name">Calico Cotton</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/the_brand.webp" alt="The Brand">
+            <div class="cat-card-overlay">
+              <div class="cat-num">05 — Category</div>
+              <div class="cat-name">The Brand</div>
+            </div>
+          </div>
+          <!-- set 2 (duplicate for seamless loop) -->
+          <div class="cat-card">
+            <img src="assests/non_woowen.webp" alt="Non-Woven Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">01 — Category</div>
+              <div class="cat-name">Non-Woven Bags</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/Canvas.webp" alt="Canvas Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">02 — Category</div>
+              <div class="cat-name">Canvas Bags</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/JUCO.jpg" alt="Jute & Juco Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">03 — Category</div>
+              <div class="cat-name">Jute &amp; Juco Bags</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/calico_cotton.jpg" alt="Calico Cotton Bags">
+            <div class="cat-card-overlay">
+              <div class="cat-num">04 — Category</div>
+              <div class="cat-name">Calico Cotton</div>
+            </div>
+          </div>
+          <div class="cat-card">
+            <img src="assests/the_brand.webp" alt="The Brand">
+            <div class="cat-card-overlay">
+              <div class="cat-num">05 — Category</div>
+              <div class="cat-name">The Brand</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:44px;" class="reveal">
+        <button class="btn-solid" style="display:inline-flex;">View Brochure <i class="fas fa-arrow-right"
+            style="margin-left:4px;"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ STATS BAND ══════════════════════ -->
+  <div class="stats-band">
+    <div class="stats-band-inner">
+      <div class="sband-item reveal">
+        <div class="sband-val"><span>5</span>K+</div>
+        <div class="sband-lbl">Custom Bags Created</div>
+      </div>
+      <div class="sband-item reveal delay-1">
+        <div class="sband-val"><span>95</span>%</div>
+        <div class="sband-lbl">Client Satisfaction</div>
+      </div>
+      <div class="sband-item reveal delay-2">
+        <div class="sband-val"><span>25</span>+</div>
+        <div class="sband-lbl">Partners Served</div>
+      </div>
+      <div class="sband-item reveal delay-3">
+        <div class="sband-val"><span>15</span>t</div>
+        <div class="sband-lbl">CO₂ Offset</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ GOAL ══════════════════════ -->
+  <section class="section goal-section" id="goal">
+    <span class="bg-word bg-word-top bg-word-gold">THE</span>
+    <span class="bg-word bg-word-bot bg-word-forest">GOAL</span>
+    <div class="container">
+      <div style="text-align:center;margin-bottom:72px;">
+        <div class="eyebrow reveal" style="justify-content:center;">Mission &amp; Vision</div>
+        <h2 class="section-h reveal delay-1" style="text-align:center;max-width:600px;margin:0 auto;">Our commitment to
+          the <em>planet</em></h2>
+      </div>
+      <div class="goal-grid">
+        <div class="goal-block reveal-left">
+          <span class="goal-word-big">The</span>
+          <p class="goal-text">The world is shifting toward sustainability, and we believe every small step counts. At
+            the heart of our business is a deep commitment to the planet, creating eco-friendly bags that combine
+            style, durability, and environmental responsibility. We envision a future where conscious choices are
+            effortless.</p>
+        </div>
+        <div class="goal-mid">
+          <div class="goal-line"></div>
+          <div class="goal-dot">🌿</div>
+          <div class="goal-line"></div>
+        </div>
+        <div class="goal-block reveal-right">
+          <span class="goal-word-big">Goal</span>
+          <p class="goal-text">Our goal is to create a lasting positive impact by offering high-quality, eco-friendly
+            bags that promote sustainable living. We are committed to reducing plastic waste through innovative design,
+            responsible materials, and ethical production practices, empowering individuals to make conscious,
+            planet-friendly choices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ PROJECTS ══════════════════════ -->
+  <section class="section projects-section" id="projects">
+    <span class="bg-word bg-word-sage">WORK</span>
+    <div class="container">
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:56px;">
+        <div>
+          <div class="eyebrow reveal">Our Portfolio</div>
+          <h2 class="section-h reveal delay-1">Eco <em>Creations</em></h2>
+        </div>
+        <p class="reveal delay-2" style="color:var(--text-soft);font-size:15px;max-width:340px;line-height:1.7;">
+          Sustainable bag designs crafted with passion and environmental consciousness for leading organizations.</p>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card reveal delay-1">
+          <div class="proj-img">
+            <img src="assests/dialog.png" alt="Dialog Eco-Friendly Tote Bags">
+            <div class="proj-img-overlay">
+              <a href="#" class="proj-btn">View Project</a>
+            </div>
+          </div>
+
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-tag">Corporate Branding</span>
+              <span class="proj-date">Mar 2025</span>
+            </div>
+
+            <h3>Dialog Women’s Day Eco Bags</h3>
+
+            <p>
+              Collaborated with Dialog to deliver sustainable, custom-printed eco-friendly tote bags for International
+              Women’s Day.
+            </p>
+
+            <div class="proj-chips">
+              <span class="proj-chip">Eco-Friendly</span>
+              <span class="proj-chip">Corporate Gifts</span>
+              <span class="proj-chip">Custom Printed</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-2">
+          <div class="proj-img">
+            <img src="assests/fb_pic2.png" alt="Heritage Innovation">
+            <div class="proj-img-overlay"><a href="#" class="proj-btn">View Project</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-tag">University</span><span class="proj-date">Jul 2025</span></div>
+            <h3>Heritage-Driven Innovation</h3>
+            <p>Partnered with University of Colombo's Postgraduate Institute for their Annual Research Symposium.</p>
+            <div class="proj-chips"><span class="proj-chip">Eco-Friendly</span><span
+                class="proj-chip">Sustainable</span><span class="proj-chip">Reusable</span></div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-3">
+          <div class="proj-img">
+            <img src="assests/fb_pic7.jpeg" alt="Arcade of Aluminium">
+            <div class="proj-img-overlay"><a href="#" class="proj-btn">View Project</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-tag">Corporate</span><span class="proj-date">Jul 2025</span></div>
+            <h3>Ditch Plastic, Go Green</h3>
+            <p>Custom eco-friendly bags for Arcade of Aluminium Pvt Ltd — bold design, reducing plastic waste.</p>
+            <div class="proj-chips"><span class="proj-chip">Custom Design</span><span class="proj-chip">Reusable</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-1">
+          <div class="proj-img">
+            <img src="assests/fb_pic5.jpg" alt="CIPM Sri Lanka">
+            <div class="proj-img-overlay"><a href="#" class="proj-btn">View Project</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-tag">HR Conference</span><span class="proj-date">2023</span></div>
+            <h3>Eco Promotion for CIPM</h3>
+            <p>Eco-friendly tote bags, books, and pencils for the National HR Conference 2023.</p>
+            <div class="proj-chips"><span class="proj-chip">Custom</span><span class="proj-chip">Sustainability</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-2">
+          <div class="proj-img">
+            <img src="assests/fb_pic8.jpeg" alt="University of Peradeniya">
+            <div class="proj-img-overlay"><a href="#" class="proj-btn">View Project</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-tag">University</span><span class="proj-date">2025</span></div>
+            <h3>University of Peradeniya</h3>
+            <p>Customized eco-friendly tote bags for the Botanical Science Department.</p>
+            <div class="proj-chips"><span class="proj-chip">Sustainable Design</span><span
+                class="proj-chip">Academic</span></div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-3">
+          <div class="proj-img">
+            <img src="assests/fb_pic9.jpeg" alt="Wattura Resort">
+            <div class="proj-img-overlay"><a href="#" class="proj-btn">View Project</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-tag">Hospitality</span><span class="proj-date">2025</span></div>
+            <h3>Wattura Resort &amp; Spa</h3>
+            <p>Eco-friendly laundry bags from non-woven, biodegradable materials for luxury resort.</p>
+            <div class="proj-chips"><span class="proj-chip">Biodegradable</span><span class="proj-chip">Custom</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-1">
+          <div class="proj-img">
+            <img src="assests/fb_pic1.jpg" alt="Nestle Maggi">
+            <div class="proj-img-overlay"><a href="#" class="proj-btn">View Project</a></div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta"><span class="proj-tag">FMCG</span><span class="proj-date">2025</span></div>
+            <h3>Nestle Lanka — Maggi</h3>
+            <p>Sustainable, responsibly manufactured promotional bags for a global brand.</p>
+            <div class="proj-chips"><span class="proj-chip">Promotional</span><span class="proj-chip">Eco Bags</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal delay-3">
+          <div class="proj-img">
+            <img src="assests/fb_pic3.jpg" alt="Green Campus Initiative">
+            <div class="proj-img-overlay">
+              <a href="#" class="proj-btn">View Project</a>
+            </div>
+          </div>
+
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-tag">University</span>
+              <span class="proj-date">2024</span>
+            </div>
+
+            <h3>Green Campus Initiative</h3>
+
+            <p>
+              Custom jute bags designed for a university sustainability drive, encouraging students to adopt reusable
+              alternatives across campus.
+            </p>
+
+            <div class="proj-chips">
+              <span class="proj-chip">Jute</span>
+              <span class="proj-chip">Student-Led</span>
+              <span class="proj-chip">Eco-Friendly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ FAQ ══════════════════════ -->
+  <section class="section faq-section" id="question">
+    <span class="bg-word bg-word-gold">FAQ</span>
+    <div class="container">
+      <div class="faq-layout">
+        <div>
+          <div class="eyebrow reveal">Common Questions</div>
+          <h2 class="section-h reveal delay-1">Everything you<br>need to <em>know</em></h2>
+          <div class="faq-list reveal delay-2">
+            <div class="faq-item open">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <h3>Are your bags really eco-friendly?</h3>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-a">Yes! Our bags are made using sustainable, biodegradable, or recycled materials. They're
+                designed to reduce plastic waste and support a cleaner planet.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <h3>Can I reuse your bags multiple times?</h3>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-a">Absolutely. Our eco-bags are durable and built to last, making them a great alternative
+                to single-use plastic.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <h3>How do I care for my eco bag?</h3>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-a">Most of our bags can be gently hand-washed and air-dried. Care instructions are
+                included with every product.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <h3>Do you offer bulk or custom orders?</h3>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-a">Yes, we offer bulk and customized options for businesses, events, and special
+                occasions. Contact us for more details.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="faq-right-card reveal-right">
+            <div class="faq-card-eyebrow">Start Today</div>
+            <h3 class="faq-card-h">Make your bag<br><strong>matter more</strong></h3>
+            <p class="faq-card-p">You bring the idea, we bring it to life with sustainable materials, personalized
+              design, and a commitment to the planet.</p>
+            <div class="faq-card-btns">
+              <a href="https://wa.me/94777222773" target="_blank" class="btn-gold"><i class="fab fa-whatsapp"></i>
+                WhatsApp Us</a>
+              <a href="https://www.facebook.com/share/1ZBHp2oGmy" target="_blank" class="btn-ghost-white"><i
+                  class="fab fa-facebook"></i> Facebook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ TESTIMONIALS ══════════════════════ -->
+  <section class="section testi-section" id="testimonial">
+    <span class="bg-word bg-word-sage">TRUST</span>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+        <div>
+          <div class="eyebrow reveal">Partner Reviews</div>
+          <h2 class="section-h reveal delay-1">What our partners <em>say</em></h2>
+        </div>
+        <div class="testi-rating-bar reveal delay-2">
+          <div class="rating-big">4.8</div>
+          <div class="rating-info">
+            <div class="stars">★★★★★</div>
+            <div class="sub">Based on partner feedback</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal delay-1">
+          <div class="testi-badge">University Partnership</div>
+          <span class="testi-quot-mark">"</span>
+          <p class="testi-quote">It is our pleasure to partner with Eco Creational to provide these eco-friendly tote
+            bags as a token of appreciation for our "Tea and Talk" farewell party at the Geography Department.</p>
+          <div class="testi-footer">
+            <div>
+              <div class="testi-org">University of Peradeniya</div>
+              <div class="testi-role">Geography Department</div>
+            </div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testi-card reveal delay-2">
+          <div class="testi-badge">Professional Institute</div>
+          <span class="testi-quot-mark">"</span>
+          <p class="testi-quote">It is our pleasure to partner with Eco Creational and receive these eco-friendly tote
+            bags, books, and pencils as a token of appreciation for our National HR Conference.</p>
+          <div class="testi-footer">
+            <div>
+              <div class="testi-org">CIPM Sri Lanka</div>
+              <div class="testi-role">Professional Development</div>
+            </div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ CONTACT ══════════════════════ -->
+  <section class="section contact-section" id="contact">
+    <span class="bg-word bg-word-forest">CONNECT</span>
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow reveal">Get In Touch</div>
+          <h2 class="section-h reveal delay-1">Let's <em>co-create</em><br>a greener tomorrow</h2>
+          <p class="section-body-text reveal delay-2">Have a project, bulk order, or custom design in mind? Reach out.
+            we'd love to bring your sustainable vision to life.</p>
+          <div class="contact-info-links">
+            <a href="https://wa.me/94777222773" target="_blank" class="cinfo reveal delay-2">
+              <div class="cinfo-icon"><i class="fab fa-whatsapp"></i></div>
+              <div>
+                <div class="cinfo-lbl">WhatsApp</div>
+                <div class="cinfo-val">+94 77 722 2773</div>
+              </div>
+            </a>
+            <a href="mailto:ecocreational@gmail.com" class="cinfo reveal delay-3">
+              <div class="cinfo-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="cinfo-lbl">Email</div>
+                <div class="cinfo-val">ecocreational@gmail.com</div>
+              </div>
+            </a>
+            <div class="cinfo reveal delay-4">
+              <div class="cinfo-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <div class="cinfo-lbl">Location</div>
+                <div class="cinfo-val">Sri Lanka — Global Shipping</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form reveal-right delay-1">
+          <h3>Send us a message ✨</h3>
+          <form action="https://formsubmit.co/ecocreational@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Eco Creation Website Inquiry">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://ecocreational.com/thankyou.html">
+            <div class="fg"><input type="text" name="name" placeholder="Your full name *" required></div>
+            <div class="fg"><input type="email" name="email" placeholder="Email address *" required></div>
+            <div class="fg"><input type="tel" name="phone" placeholder="Phone number (optional)"></div>
+            <div class="fg">
+              <select name="inquiry_type">
+                <option value="Custom order">Custom order / Bulk inquiry</option>
+                <option value="Partnership">Partnership / Collaboration</option>
+                <option value="General">General question</option>
+                <option value="Feedback">Feedback / Testimonial</option>
+              </select>
+            </div>
+            <div class="fg"><textarea name="message" placeholder="Tell us about your idea or requirement... *" required
+                rows="5"></textarea></div>
+            <button type="submit" class="submit-btn">Send Message <i class="fas fa-leaf"></i></button>
+          </form>
+          <p class="form-note">We'll get back to you within 24 hours. 🌱</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  <footer class="footer">
+    <span class="bg-word">CREATION</span>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo-text">Eco <em>Creation</em></div>
+          <p class="footer-tagline">Crafting a greener tomorrow through sustainable, eco-friendly bags for every
+            occasion and every purpose.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/share/1ZBHp2oGmy" target="_blank" class="fsoc"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/94777222773" target="_blank" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-h">Explore</div>
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="about.html" class="footer-link">About</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="projects.html" class="footer-link">Projects</a>
+        </div>
+        <div>
+          <div class="footer-col-h">Resources</div>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="question.html" class="footer-link">FAQ</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms</a>
+        </div>
+        <div>
+          <div class="footer-col-h">Contact</div>
+          <a href="https://wa.me/94777222773" class="footer-link">+94 77 722 2773</a>
+          <a href="mailto:ecocreational@gmail.com" class="footer-link">ecocreational@gmail.com</a>
+          <span class="footer-link">Sri Lanka</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Eco Creation. All rights reserved. Developed by <a href="https://influxyn.netlify.app/"
+            target="_blank">INFLUXYN</a> by YAGI Influx Solutions.</p>
+        <p>Crafting a greener tomorrow 🌱</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Float Buttons -->
+  <a class="wa-btn" href="https://wa.me/94777222773" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <div class="up-btn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
+
+  <script>
+    /* ── CURSOR ── */
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.1;
+      ringY += (mouseY - ringY) * 0.1;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    /* ── LOADER ── */
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('eco-loader').classList.add('hide'), 2200);
+    });
+    setTimeout(() => document.getElementById('eco-loader').classList.add('hide'), 2800);
+
+    /* ── HEADER SCROLL ── */
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    /* ── MOBILE NAV ── */
+    function toggleNav() {
+      document.getElementById('navMenu').classList.toggle('active');
+    }
+    document.addEventListener('click', e => {
+      const nav = document.getElementById('navMenu');
+      const ham = document.getElementById('hamburger');
+      if (nav && ham && !nav.contains(e.target) && !ham.contains(e.target)) nav.classList.remove('active');
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) document.getElementById('navMenu').classList.remove('active');
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    /* ── FAQ ── */
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* ── SCROLL TOP ── */
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+    /* ── SMOOTH ANCHOR SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('navMenu').classList.remove('active'); }
+      });
+    });
+
+    /* ── LEAF PARTICLES ── */
+    function spawnLeaf() {
+      const wrap = document.getElementById('leafParticles');
+      if (!wrap) return;
+      const leaf = document.createElement('div');
+      leaf.className = 'leaf-particle';
+      const size = 12 + Math.random() * 18;
+      const x = Math.random() * 100;
+      const dur = 8 + Math.random() * 12;
+      const delay = Math.random() * 6;
+      leaf.style.cssText = `left:${x}%;bottom:-40px;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s;`;
+      leaf.innerHTML = `<svg viewBox="0 0 30 30" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg" style="opacity:${0.3 + Math.random() * 0.4}">
+    <path d="M15,3 C19,7 26,12 27,18 C28,24 23,27 17,28 C11,29 6,25 5,19 C4,13 7,7 12,5 C14,3.5 14.5,2.5 15,3Z" fill="${Math.random() > 0.5 ? '#7a9e7e' : '#c8a95a'}"/>
+  </svg>`;
+      wrap.appendChild(leaf);
+      setTimeout(() => leaf.remove(), (dur + delay) * 1000);
+    }
+    setInterval(spawnLeaf, 1200);
+    for (let i = 0; i < 5; i++) setTimeout(spawnLeaf, i * 400);
+
+    /* ── COUNTER ANIMATION ── */
+    function animateCounter(el, target, suffix = '') {
+      let start = 0;
+      const dur = 1800;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const prog = Math.min((ts - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - prog, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (prog < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const statsObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.sband-val span').forEach(span => {
+            const val = parseInt(span.textContent);
+            animateCounter(span, val);
+          });
+          statsObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stats-band').forEach(el => statsObs.observe(el));
+  </script>
+</body>
+
+</html>
     <link rel="icon" type="image/png" href="assests/logo.png">
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/04/15/13/20260415131701-72YBO3UP.js" defer></script>

@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
-    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/04/15/13/20260415131701-72YBO3UP.js" defer></script>
-    
+
     <!-- Primary SEO Meta Tags -->
     <title>About Us | Eco Creational – Sustainable Bag Makers & Green Vision</title>
     <meta name="description"
@@ -22,930 +19,1459 @@
 
     <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
-        /* ===== RESET & GLOBAL ===== */
-        * {
+        /* ─── DESIGN TOKENS ──────────────────────────────────────────────── */
+        :root {
+            --sage: #7a9e7e;
+            --sage-light: #a8c5ac;
+            --sage-pale: #d4e8d6;
+            --sage-ultra: #eef6ef;
+            --forest: #2d5a34;
+            --forest-mid: #3d7444;
+            --leaf: #5a8f5f;
+            --gold: #c8a95a;
+            --gold-light: #e8d49a;
+            --gold-ultra: #fdf8ee;
+            --cream: #faf8f3;
+            --warm-white: #fffffe;
+            --text-dark: #1e2e22;
+            --text-mid: #4a6651;
+            --text-soft: #7a9a80;
+            --text-faint: #afc4b3;
+            --border: rgba(90, 143, 95, 0.15);
+            --border-gold: rgba(200, 169, 90, 0.25);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Jost', system-ui, sans-serif;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+        }
+
+        /* ─── RESET & BASE ───────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #fbfef9;
-            color: #1e2e1c;
-            line-height: 1.5;
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--text-dark);
             overflow-x: hidden;
+            cursor: none;
         }
 
-        body.preload {
-            overflow: hidden;
-        }
-
-        body.loaded {
-            overflow: auto;
-        }
-
-        /* ===== LOADING SCREEN ===== */
-        #eco-loader {
+        /* ─── CUSTOM CURSOR ──────────────────────────────────────────────── */
+        .cursor {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f4f9f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            transition: opacity 0.7s ease, visibility 0.7s;
+            width: 10px;
+            height: 10px;
+            background: var(--forest);
+            border-radius: 50%;
             pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s;
+            mix-blend-mode: multiply;
         }
 
-        .loaded #eco-loader {
+        .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--forest);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.12s ease, width 0.3s var(--ease-out), height 0.3s var(--ease-out), opacity 0.3s;
+            opacity: 0.5;
+        }
+
+        body:has(a:hover) .cursor,
+        body:has(button:hover) .cursor,
+        body:has(.faq-q:hover) .cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+        }
+
+        body:has(a:hover) .cursor-ring,
+        body:has(button:hover) .cursor-ring,
+        body:has(.faq-q:hover) .cursor-ring {
+            width: 52px;
+            height: 52px;
+            opacity: 0.25;
+        }
+
+        /* ─── LOADER ─────────────────────────────────────────────────────── */
+        #eco-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+        }
+
+        #eco-loader.hide {
             opacity: 0;
-            visibility: hidden;
+            pointer-events: none;
+            transform: scale(1.03);
         }
 
-        .loader-content {
-            text-align: center;
-            max-width: 300px;
-            padding: 20px;
-        }
-
-        .leaf-spinner {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            animation: gentle-float 2.2s infinite ease-in-out;
-        }
-
-        .leaf-spinner svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 8px 12px rgba(46, 125, 50, 0.15));
-        }
-
-        .leaf-path {
-            fill: #2e7d32;
-            transform-origin: center;
-            animation: leaf-pulse 1.8s infinite alternate;
-        }
-
-        .loader-logo-text {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #1b5e20;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .loader-tagline {
-            font-size: 16px;
-            color: #4a7c59;
+        .loader-leaf {
+            width: 64px;
+            height: 64px;
+            animation: loaderSpin 2.4s ease-in-out infinite;
             margin-bottom: 24px;
         }
 
-        .progress-dots {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            background: #a5d6a7;
-            border-radius: 50%;
-            animation: dot-bounce 1.4s infinite both;
-        }
-
-        .dot:nth-child(1) {
-            animation-delay: -0.32s;
-            background: #2e7d32;
-        }
-
-        .dot:nth-child(2) {
-            animation-delay: -0.16s;
-            background: #43a047;
-        }
-
-        .dot:nth-child(3) {
-            background: #66bb6a;
-        }
-
-        @keyframes gentle-float {
+        @keyframes loaderSpin {
             0% {
-                transform: translateY(0);
+                transform: rotate(-15deg) scale(0.95);
             }
 
             50% {
-                transform: translateY(-12px);
+                transform: rotate(15deg) scale(1.05);
             }
 
             100% {
-                transform: translateY(0);
+                transform: rotate(-15deg) scale(0.95);
             }
         }
 
-        @keyframes leaf-pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.9;
+        .loader-name {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: var(--forest);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.3s var(--ease-out) forwards;
+        }
+
+        .loader-sub {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.5s var(--ease-out) forwards;
+        }
+
+        .loader-bar-wrap {
+            width: 120px;
+            height: 1px;
+            background: var(--sage-pale);
+            margin-top: 28px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 0.5s 0.6s forwards;
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: var(--forest);
+            width: 0;
+            animation: barFill 1.8s 0.7s var(--ease-out) forwards;
+        }
+
+        @keyframes barFill {
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
             }
 
-            100% {
-                transform: scale(1.08);
+            to {
                 opacity: 1;
+                transform: none;
             }
         }
 
-        @keyframes dot-bounce {
-
-            0%,
-            80%,
-            100% {
-                transform: scale(0.6);
-                opacity: 0.5;
-            }
-
-            40% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
+        /* ─── SCROLL REVEAL ──────────────────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
         }
 
-        /* ===== HEADER ===== */
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.2rem 5%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0, 40, 0, 0.04);
-            position: sticky;
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s !important;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s !important;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s !important;
+        }
+
+        .delay-4 {
+            transition-delay: 0.4s !important;
+        }
+
+        .delay-5 {
+            transition-delay: 0.55s !important;
+        }
+
+        /* ─── HEADER ─────────────────────────────────────────────────────── */
+        .header {
+            position: fixed;
             top: 0;
-            z-index: 1000;
-        }
-
-        .logo-icon img {
-            width: 150px;
-            height: 90px;
-        }
-
-        .navigation-menu {
+            left: 0;
+            right: 0;
+            z-index: 990;
+            padding: 0 5%;
+            height: 76px;
             display: flex;
-            gap: 2.5rem;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(250, 248, 243, 0.88);
+            backdrop-filter: blur(20px) saturate(1.4);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.4s;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 4px 40px rgba(45, 90, 52, 0.08);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-wrap img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--forest);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-list {
             list-style: none;
+            display: flex;
+            gap: 4px;
         }
 
         .nav-link {
-            text-decoration: none;
+            display: block;
+            padding: 8px 15px;
+            font-size: 13px;
             font-weight: 500;
-            color: #1e3a1e;
-            font-size: 1.05rem;
-            transition: color 0.2s;
+            letter-spacing: 0.5px;
+            color: var(--text-mid);
+            text-decoration: none;
+            border-radius: 100px;
+            transition: all 0.25s;
+            text-transform: uppercase;
         }
 
-        .nav-link:hover {
-            color: #2e7d32;
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--forest);
+            background: var(--sage-ultra);
         }
 
-        .signup-button {
-            background: #2e7d32;
-            color: white;
+        .nav-cta {
+            background: var(--forest);
+            color: #fff;
             border: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 40px;
+            padding: 11px 26px;
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 13px;
             font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 6px 14px rgba(46, 125, 50, 0.2);
-            transition: 0.2s;
+            transition: all 0.3s var(--ease-out);
+            box-shadow: 0 4px 20px rgba(45, 90, 52, 0.25);
         }
 
-        .signup-button:hover {
-            background: #1b5e20;
+        .nav-cta:hover {
+            background: var(--forest-mid);
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(45, 90, 52, 0.35);
         }
 
-        .mobile-menu-toggle {
+        .hamburger {
             display: none;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
+            padding: 6px;
         }
 
-        .mobile-menu-bar {
-            width: 28px;
-            height: 3px;
-            background: #1e3a1e;
-            border-radius: 3px;
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: all 0.3s;
         }
 
-        /* ===== ABOUT HERO ===== */
-        .about-hero {
-            padding: 4rem 5% 2rem;
-            text-align: center;
-            background: linear-gradient(145deg, #eaf5e6 0%, #ffffff 90%);
-        }
-
-        .about-hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: #143214;
-            margin-bottom: 0.75rem;
-        }
-
-        .about-hero h1 span {
-            color: #2e7d32;
-            position: relative;
-        }
-
-        .about-hero h1 span::after {
-            content: '';
+        /* ─── BG TEXT WATERMARK ──────────────────────────────────────────── */
+        .bg-word {
             position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: rgba(46, 125, 50, 0.15);
-            z-index: -1;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-style: italic;
+            color: transparent;
+            -webkit-text-stroke: 1.5px;
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
+            white-space: nowrap;
+            z-index: 0;
         }
 
-        .hero-sub {
-            font-size: 1.25rem;
-            color: #3a5e3a;
-            max-width: 750px;
+        .bg-word-forest {
+            -webkit-text-stroke-color: rgba(45, 90, 52, 0.08);
+        }
+
+        .bg-word-sage {
+            -webkit-text-stroke-color: rgba(122, 158, 126, 0.12);
+        }
+
+        .bg-word-gold {
+            -webkit-text-stroke-color: rgba(200, 169, 90, 0.1);
+        }
+
+        /* ─── SECTION SHARED ─────────────────────────────────────────────── */
+        .section {
+            padding: 110px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            color: var(--forest-mid);
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1.5px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .section-h {
+            font-family: var(--font-serif);
+            font-size: clamp(38px, 5vw, 64px);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .section-h em {
+            font-style: italic;
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        .section-body-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-mid);
+            max-width: 520px;
+        }
+
+        /* ─── ABOUT HERO ─────────────────────────────────────────────────── */
+        .about-hero {
+            min-height: 55vh;
+            padding-top: 120px;
+            background: linear-gradient(160deg, #f0f7f1 0%, var(--cream) 50%, var(--gold-ultra) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .about-hero .bg-word {
+            font-size: clamp(100px, 20vw, 280px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            letter-spacing: -6px;
+            -webkit-text-stroke: 2px rgba(45, 90, 52, 0.05);
+        }
+
+        .about-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            padding: 0 5%;
+        }
+
+        .about-hero-inner h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(40px, 5vw, 68px);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-hero-inner h1 em {
+            font-style: italic;
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        .about-hero-inner .hero-desc {
+            font-size: 17px;
+            line-height: 1.85;
+            color: var(--text-mid);
+            max-width: 550px;
             margin: 0 auto;
         }
 
-        /* ===== STORY SECTION ===== */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+        }
+
+        /* ─── STORY SECTION ──────────────────────────────────────────────── */
         .story-section {
-            padding: 4rem 5%;
-            max-width: 1300px;
-            margin: 0 auto;
+            background: var(--warm-white);
+        }
+
+        .story-section .bg-word {
+            font-size: clamp(100px, 20vw, 260px);
+            top: 50%;
+            right: -2%;
+            transform: translateY(-50%);
         }
 
         .story-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 72px;
             align-items: center;
         }
 
-        .story-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #1a3a1a;
+        .story-img-frame {
+            position: relative;
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: linear-gradient(145deg, var(--sage-ultra), rgba(255, 255, 255, 0.6));
+            box-shadow: 0 30px 80px rgba(45, 90, 52, 0.12), 0 0 0 1px var(--border);
+            height: 420px;
         }
 
-        .story-text p {
-            margin-bottom: 1.5rem;
-            color: #2e4a2e;
-            font-size: 1.05rem;
+        .story-img-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
         }
 
-        .story-image {
-            background: #d9e8d4;
-            border-radius: 40px;
-            height: 360px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1e5e1e;
-            font-weight: 600;
-            background-image: url('assests/echo_friendly.jpg');
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 30px 30px -15px rgba(0, 30, 0, 0.1);
-        }
-
-        .placeholder-img {
-            background: #bcddb0;
+        .story-img-frame img {
             width: 100%;
             height: 100%;
-            border-radius: 40px;
+            object-fit: cover;
+            position: relative;
+            z-index: 0;
         }
 
-        /* ===== VALUES ===== */
+        .story-img-tag {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            z-index: 3;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 20px;
+            box-shadow: 0 8px 32px rgba(45, 90, 52, 0.12);
+            font-family: var(--font-sans);
+        }
+
+        .story-img-tag .big {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--forest);
+            line-height: 1;
+        }
+
+        .story-img-tag .small {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-soft);
+            margin-top: 4px;
+        }
+
+        .story-deco {
+            position: absolute;
+            top: -24px;
+            right: -24px;
+            width: 100px;
+            height: 100px;
+            border: 1.5px dashed var(--sage-pale);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ─── IMPACT STATS INLINE ────────────────────────────────────────── */
+        .impact-stats {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            margin-top: 32px;
+        }
+
+        .stat-item {
+            flex: 1;
+            padding: 18px 16px;
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item+.stat-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--forest);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-soft);
+        }
+
+        /* ─── VALUES SECTION ─────────────────────────────────────────────── */
         .values-section {
-            padding: 3rem 5% 4rem;
-            background: #f4faf1;
-            border-radius: 60px 60px 0 0;
+            background: linear-gradient(160deg, var(--sage-ultra) 0%, var(--cream) 60%, var(--gold-ultra) 100%);
+        }
+
+        .values-section .bg-word {
+            font-size: clamp(90px, 18vw, 240px);
+            bottom: -4%;
+            left: -2%;
+            -webkit-text-stroke-color: rgba(45, 90, 52, 0.06);
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 52px;
         }
 
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
         }
 
         .value-card {
-            background: white;
-            padding: 2.2rem 1.8rem;
-            border-radius: 28px;
-            box-shadow: 0 12px 24px -8px rgba(0, 30, 0, 0.05);
-            border: 1px solid #e2f0da;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 28px;
             text-align: center;
+            transition: all 0.4s var(--ease-out);
+            box-shadow: 0 4px 24px rgba(45, 90, 52, 0.04);
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(45, 90, 52, 0.12);
+            border-color: var(--sage-pale);
         }
 
         .value-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: var(--sage-ultra);
+            border: 1px solid var(--sage-pale);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover .value-icon {
+            background: var(--sage-pale);
+            transform: scale(1.1) rotate(-6deg);
         }
 
         .value-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: #1e3a1e;
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
         }
 
-        /* ===== TEAM / FOUNDER NOTE (optional) ===== */
-        .founder-note {
-            padding: 4rem 5%;
-            max-width: 1000px;
-            margin: 0 auto;
+        .value-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-mid);
+        }
+
+        /* ─── FOUNDER NOTE ───────────────────────────────────────────────── */
+        .founder-section {
+            background: var(--warm-white);
+        }
+
+        .founder-section .bg-word {
+            font-size: clamp(80px, 16vw, 220px);
+            top: 50%;
+            left: -2%;
+            transform: translateY(-50%);
+            -webkit-text-stroke-color: rgba(200, 169, 90, 0.08);
+        }
+
+        .founder-card {
             display: flex;
-            gap: 3rem;
+            gap: 48px;
             align-items: center;
-            background: white;
-            border-radius: 60px;
-            margin-top: 4rem;
-            margin-bottom: 4rem;
-            box-shadow: 0 15px 25px -10px #1b5e2010;
-            border: 1px solid #d0e6c5;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 52px 56px;
+            box-shadow: 0 16px 60px rgba(45, 90, 52, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(122, 158, 126, 0.08);
         }
 
         .founder-avatar {
-            width: 140px;
-            height: 140px;
-            background: #b1d8a5;
+            width: 130px;
+            height: 130px;
+            min-width: 130px;
             border-radius: 50%;
-            flex-shrink: 0;
             background-image: url('assests/author.jpg');
             background-size: cover;
-            border: 5px solid #eaf5e6;
+            background-position: center;
+            border: 4px solid var(--sage-pale);
+            box-shadow: 0 12px 40px rgba(45, 90, 52, 0.15);
+            position: relative;
+            z-index: 1;
         }
 
-        .founder-message h4 {
-            font-size: 1.8rem;
-            color: #1e3a1e;
-            margin-bottom: 0.8rem;
+        .founder-body {
+            position: relative;
+            z-index: 1;
         }
 
-        .founder-message p {
-            color: #3a5e3a;
-        }
-
-        /* ===== MILESTONE / IMPACT ===== */
-        .impact-stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #2e7d32;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer-section {
-            background: #0e1f0e;
-            color: #d4e6d0;
-            padding: 3rem 5% 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 4rem;
-        }
-
-        .footer-column-title {
-            color: white;
+        .founder-body h4 {
+            font-family: var(--font-serif);
+            font-size: 28px;
             font-weight: 600;
-            margin-bottom: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .founder-body p {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-mid);
+            margin-bottom: 10px;
+        }
+
+        .founder-body .founder-name {
+            font-weight: 600;
+            color: var(--forest);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* ─── CTA BANNER ─────────────────────────────────────────────────── */
+        .cta-banner {
+            background: linear-gradient(145deg, var(--forest), var(--forest-mid));
+            margin: 0 5% 80px;
+            padding: 56px 48px;
+            border-radius: 32px;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(45, 90, 52, 0.2);
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: rgba(200, 169, 90, 0.1);
+        }
+
+        .cta-banner-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-banner h3 {
+            font-family: var(--font-serif);
+            font-size: 38px;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .cta-banner h3 strong {
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .cta-banner p {
+            font-size: 16px;
+            opacity: 0.75;
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .btn-gold-lg {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--text-dark);
+            padding: 15px 36px;
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            transition: all 0.3s var(--ease-out);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-gold-lg:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+        }
+
+        /* ─── FOOTER ────────────────────────────────────────────────────── */
+        .footer {
+            background: var(--text-dark);
+            padding: 80px 5% 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer .bg-word {
+            font-size: clamp(80px, 18vw, 220px);
+            bottom: -2%;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-text-stroke-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .footer-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 48px;
+            padding-bottom: 56px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .footer-logo-text {
+            font-family: var(--font-serif);
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .footer-logo-text em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 28px;
+            max-width: 280px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .fsoc {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .fsoc:hover {
+            background: var(--forest);
+            border-color: var(--sage);
+            color: white;
+        }
+
+        .footer-col-h {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 22px;
         }
 
         .footer-link {
             display: block;
-            color: #b6d8ae;
             text-decoration: none;
-            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: white;
         }
 
         .footer-bottom {
-            text-align: center;
-            padding-top: 2.5rem;
-            border-top: 1px solid #2a472a;
-            margin-top: 2rem;
+            padding-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, 0.28);
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .up {
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+        }
+
+        /* ─── FIXED BUTTONS ─────────────────────────────────────────────── */
+        .wa-btn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 28px;
+            right: 28px;
+            z-index: 900;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25d366;
             display: flex;
             align-items: center;
-            height: 50px;
-            width: 50px;
+            justify-content: center;
             font-size: 24px;
-            padding: 10px 15px;
-            background: #4e9e24;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
+            color: white;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
             cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
         }
 
-        /* Responsive */
-        @media (max-width: 800px) {
-            .story-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+        .wa-btn:hover {
+            transform: scale(1.12) translateY(-3px);
+            box-shadow: 0 12px 36px rgba(37, 211, 102, 0.55);
+        }
+
+        .up-btn {
+            position: fixed;
+            bottom: 96px;
+            right: 28px;
+            z-index: 900;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-mid);
+            font-size: 13px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(45, 90, 52, 0.12);
+            transition: all 0.3s;
+        }
+
+        .up-btn:hover {
+            background: var(--forest);
+            color: white;
+            border-color: var(--forest);
+            transform: translateY(-3px);
+        }
+
+        /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .founder-note {
-                flex-direction: column;
-                text-align: center;
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .navigation-menu {
+            body {
+                cursor: auto;
+            }
+
+            .cursor,
+            .cursor-ring {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
+            }
+
+            .header nav {
+                display: none;
+            }
+
+            .header nav.active {
+                display: block;
+                position: fixed;
+                top: 76px;
                 left: 0;
                 right: 0;
-                background: white;
-                padding: 1.5rem;
+                background: rgba(250, 248, 243, 0.97);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+                padding: 16px 5%;
+                z-index: 989;
             }
 
-            .navigation-menu.active {
+            .header nav.active .nav-list {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .hamburger {
                 display: flex;
             }
 
-            .mobile-menu-toggle {
-                display: flex;
+            .nav-cta {
+                display: none;
             }
 
-            .about-hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Footer Section */
-        .footer-section.full-height-section {
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .footer-section {
-            background: #0e1f0e;
-            color: white;
-            padding: 50px 10px 20px 10px;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-
-
-
-        .footer-content-wrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: auto;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .footer-brand {
-            flex: 1;
-        }
-
-        .footer-logo {
-            font-size: clamp(20px, 3vw, 24px);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .footer-tagline {
-            font-size: clamp(16px, 2vw, 18px);
-            margin-bottom: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 80px;
-        }
-
-        .footer-column {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-column-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 16px;
-            color: #a5d71c;
-        }
-
-        .footer-link {
-            color: #ffffff;
-            text-decoration: none;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .footer-link:hover {
-            color: #a5d71c;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 10px;
-            text-align: center;
-            color: #d3e6c5;
-            font-size: 14px;
-        }
-
-        /*message button*/
-        .whatsapp-button {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            height: 80px;
-            width: 80px;
-            background: url("assests/whatsapp.png") center/contain no-repeat;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 10px;
-            /* Animation */
-            animation: bounce 3.5s infinite;
-        }
-
-        /* Bounce Keyframes */
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
-            50% {
-                transform: translateY(-15px);
+            .story-img-frame {
+                height: 300px;
             }
-        }
 
-        .whatsapp-button:hover {
-            cursor: pointer;
-        }
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
 
-        /* ===== SCROLL ANIMATIONS ===== */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
-                transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+            .founder-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 36px 28px;
+            }
 
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+            .founder-avatar {
+                margin: 0 auto;
+            }
 
-        /* Staggered delays for value cards */
-        .value-card {
-            transition-delay: calc(var(--card-index, 0) * 0.1s);
-        }
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
 
-        /* Staggered delays for stat items */
-        .stat-item {
-            transition-delay: calc(var(--stat-index, 0) * 0.12s);
-        }
+            .impact-stats {
+                flex-direction: column;
+                border-radius: 12px;
+            }
 
-        /* Reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            .animate-on-scroll {
-                transition: none;
-                opacity: 1;
-                transform: none;
+            .stat-item+.stat-item::before {
+                width: 80%;
+                height: 1px;
+                top: 0;
+                left: 10%;
+                bottom: auto;
+            }
+
+            .cta-banner {
+                padding: 36px 24px;
+                border-radius: 24px;
+            }
+
+            .cta-banner h3 {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 
-<body class="preload">
-    <!-- ===== LOADING SCREEN ===== -->
+<body>
+
+    <!-- CURSOR -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- LOADER -->
     <div id="eco-loader">
-        <div class="loader-content">
-            <div class="leaf-spinner">
-                <svg viewBox="0 0 100 100">
-                    <path class="leaf-path"
-                        d="M50,10 C65,20 85,35 88,55 C91,75 78,85 60,88 C42,91 28,80 22,62 C16,44 22,25 38,16 C46,10 48,8 50,10 Z M50,15 C40,25 30,45 35,62 C40,76 52,82 65,78 C78,74 82,60 80,48 C78,36 65,20 50,15 Z"
-                        fill="#2E7D32" />
-                    <path d="M48,25 C40,35 35,50 38,62 C41,72 50,76 58,73 C66,70 70,60 69,50 C68,40 60,28 48,25 Z"
-                        fill="#66BB6A" opacity="0.7" />
-                </svg>
-            </div>
-            <div class="loader-logo-text">ECO CREATIONAL</div>
-            <div class="loader-tagline">our story, our purpose</div>
-            <div class="progress-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="loader-leaf">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M50,8 C67,18 88,36 90,57 C92,78 77,88 58,90 C39,92 24,80 18,61 C12,42 19,22 36,14 C44,9 47,6 50,8Z"
+                    fill="#2d5a34" />
+                <path d="M46,22 C37,34 32,52 36,65 C39,76 50,80 60,77 C70,73 74,62 72,50 C70,38 60,24 46,22Z"
+                    fill="#7a9e7e" opacity="0.7" />
+                <line x1="50" y1="20" x2="50" y2="85" stroke="rgba(255,255,255,0.3)" stroke-width="1"
+                    stroke-dasharray="3,4" />
+            </svg>
+        </div>
+        <div class="loader-name">Eco Creational</div>
+        <div class="loader-sub">our story, our purpose</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
         </div>
     </div>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header-container">
-        <div class="logo-section">
-            <div class="logo-icon">
-                <img src="assests/logo.png" alt="Eco Creational">
-            </div>
+    <!-- HEADER -->
+    <header class="header" id="mainHeader">
+        <div class="logo-wrap">
+            <img src="assests/logo.png" alt="Eco Creational">
+            <span class="logo-text">Eco Creational</span>
         </div>
-        <nav>
-            <ul class="navigation-menu" id="navigationMenu">
+        <nav id="navMenu">
+            <ul class="nav-list">
                 <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link" style="color:#2e7d32; font-weight:600;">About</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
                 <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="question.html" class="nav-link">Q&A</a></li>
+                <li><a href="services.html" class="nav-link">Service</a></li>
+                <li><a href="question.html" class="nav-link">Q&amp;A</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
-
-
             </ul>
         </nav>
-        <button class="signup-button" onclick="window.open('https://wa.me/94777222773', '_blank')">Contact Us</button>
-        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            <div class="mobile-menu-bar"></div>
-            <div class="mobile-menu-bar"></div>
-            <div class="mobile-menu-bar"></div>
+        <button class="nav-cta" onclick="window.open('https://wa.me/94777222773','_blank')">
+            <i class="fab fa-whatsapp"></i> Contact Us
+        </button>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+            <span></span><span></span><span></span>
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="about-hero">
-        <h1>We are <span>Eco Creational</span></h1>
-        <p class="hero-sub">Born from a simple idea: that everyday choices can reshape the future of our planet — one
-            bag at a time.</p>
+    <!-- ══════════════════════ ABOUT HERO ══════════════════════ -->
+    <section class="about-hero" id="aboutHero">
+        <div class="hero-grid"></div>
+        <span class="bg-word bg-word-forest">ABOUT</span>
+        <div class="about-hero-inner">
+            <div class="eyebrow reveal" style="justify-content:center;">Our Journey</div>
+            <h1 class="reveal delay-1">We are <em>Eco Creational</em></h1>
+            <p class="hero-desc reveal delay-2">Born from a simple idea: that everyday choices can reshape the future of
+                our planet | one bag at a time.</p>
+        </div>
     </section>
 
-    <!-- ===== STORY SECTION ===== -->
-    <section class="story-section">
-        <div class="story-grid">
-            <div class="story-text">
-                <h2>From small steps to big impact</h2>
-                <p>Eco Creational began in Sri Lanka with a handful of sewing machines and a deep concern for the
-                    plastic crisis. What started as a local initiative to replace single‑use bags has grown into a
-                    trusted partner for universities, resorts, and global brands.</p>
-                <p>We believe sustainability should never be a compromise. That’s why we blend timeless design with
-                    eco‑friendly materials — non‑woven, canvas, jute, and calico cotton — all crafted ethically. Every
-                    bag we produce carries a promise: to reduce waste, support conscious living, and empower
-                    communities.</p>
-                <div class="impact-stats">
-                    <div class="stat-item"><span class="stat-number">5000+</span> <br>bags created</div>
-                    <div class="stat-item"><span class="stat-number">30+</span> <br>partners</div>
-                    <div class="stat-item"><span class="stat-number">100%</span> <br>plastic‑free</div>
+    <!-- ══════════════════════ STORY SECTION ══════════════════════ -->
+    <section class="section story-section" id="story">
+        <span class="bg-word bg-word-sage">STORY</span>
+        <div class="container">
+            <div class="story-grid">
+                <div>
+                    <div class="eyebrow reveal">Our Story</div>
+                    <h2 class="section-h reveal delay-1">From small steps to <em>big impact</em></h2>
+                    <p class="section-body-text reveal delay-2" style="max-width:100%; margin-bottom:18px;">
+                        Eco Creational began in Sri Lanka with a handful of sewing machines and a deep concern for the
+                        plastic crisis. What started as a local initiative to replace single‑use bags has grown into a
+                        trusted partner for universities, resorts, and global brands.
+                    </p>
+                    <p class="section-body-text reveal delay-3" style="max-width:100%; margin-bottom:28px;">
+                        We believe sustainability should never be a compromise. That's why we blend timeless design with
+                        eco friendly materials non woven, canvas, jute, and calico cotton all crafted ethically. Every
+                        bag we produce carries a promise: to reduce waste, support conscious living, and empower
+                        communities.
+                    </p>
+                    <div class="impact-stats reveal delay-4">
+                        <div class="stat-item">
+                            <div class="stat-number">5,000+</div>
+                            <div class="stat-label">Bags Created</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">30+</div>
+                            <div class="stat-label">Partners</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Plastic‑Free</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-right delay-2" style="position:relative;">
+                    <div class="story-deco"></div>
+                    <div class="story-img-frame">
+                        <img src="assests/echo_friendly.jpg" alt="Handcrafted eco-friendly bags">
+                        <div class="story-img-tag">
+                            <div class="big">🌿 Handcrafted</div>
+                            <div class="small">with care & purpose</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="story-image">
-                <!-- image placeholder; you can replace with actual image -->
-                <div
-                    style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); padding:1rem 2rem; border-radius: 60px;color: white;">
-                    🌿 handcrafted with care
+        </div>
+    </section>
+
+    <!-- ══════════════════════ VALUES SECTION ══════════════════════ -->
+    <section class="section values-section" id="values">
+        <span class="bg-word bg-word-sage">VALUES</span>
+        <div class="container">
+            <div class="values-header">
+                <div class="eyebrow reveal" style="justify-content:center;">What Guides Us</div>
+                <h2 class="section-h reveal delay-1" style="text-align:center;max-width:600px;margin:0 auto 16px;">Our
+                    core <em>values</em></h2>
+                <p class="section-body-text reveal delay-2" style="text-align:center;max-width:500px;margin:0 auto;">
+                    These principles guide every stitch, every design, and every partnership.</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card reveal delay-1">
+                    <div class="value-icon">🌍</div>
+                    <h3>Planet First</h3>
+                    <p>Every material is chosen for its low environmental footprint. Biodegradable, recyclable, or
+                        reusable.</p>
+                </div>
+                <div class="value-card reveal delay-2">
+                    <div class="value-icon">🤝</div>
+                    <h3>Ethical Craft</h3>
+                    <p>Fair wages, safe working conditions, and a commitment to the artisans behind every bag.</p>
+                </div>
+                <div class="value-card reveal delay-3">
+                    <div class="value-icon">✨</div>
+                    <h3>Design Without Waste</h3>
+                    <p>Minimalist, functional, and timeless so you'll want to reuse it again and again.</p>
+                </div>
+                <div class="value-card reveal delay-4">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation for Good</h3>
+                    <p>Continuously exploring better materials and processes to push sustainability forward.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== VALUES ===== -->
-    <section class="values-section">
-        <h2 style="font-size: 2.3rem; text-align: center; color:#1e3a1e;">Our core values</h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto; color:#3a5e3a;">These principles guide every
-            stitch, every design, and every partnership.</p>
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🌍</div>
-                <h3>Planet first</h3>
-                <p>Every material is chosen for its low environmental footprint. Biodegradable, recyclable, or reusable.
-                </p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🤝</div>
-                <h3>Ethical craft</h3>
-                <p>Fair wages, safe working conditions, and a commitment to the artisans behind every bag.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">✨</div>
-                <h3>Design without waste</h3>
-                <p>Minimalist, functional, and timeless — so you’ll want to reuse it again and again.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">💡</div>
-                <h3>Innovation for good</h3>
-                <p>Continuously exploring better materials and processes to push sustainability forward.</p>
+    <!-- ══════════════════════ FOUNDER NOTE ══════════════════════ -->
+    <section class="section founder-section" id="founder">
+        <span class="bg-word bg-word-gold">FOUNDER</span>
+        <div class="container">
+            <div class="founder-card reveal-scale">
+                <div class="founder-avatar"></div>
+                <div class="founder-body">
+                    <h4>A message from our founder</h4>
+                    <p>"I started Eco Creational because I couldn't unsee the plastic littering our beautiful island.
+                        Every bag we make is a vote for a cleaner world. Thank you for joining us on this journey
+                        together, we're proving that style and sustainability can walk hand in hand."</p>
+                    <p class="founder-name">— Shan Perera, Founder</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOUNDER NOTE ===== -->
-    <section class="founder-note">
-        <div class="founder-avatar"></div>
-        <div class="founder-message">
-            <h4>A message from our founder</h4>
-            <p>“I started Eco Creational because I couldn’t unsee the plastic littering our beautiful island. Every bag
-                we make is a vote for a cleaner world. Thank you for joining us on this journey — together, we’re
-                proving that style and sustainability can walk hand in hand.”</p>
-            <p style="margin-top:1rem; font-weight: 600;">— Shan Perera, Founder</p>
+    <!-- ══════════════════════ CTA BANNER ══════════════════════ -->
+    <div class="cta-banner reveal-scale" id="ctaBanner">
+        <div class="cta-banner-inner">
+            <h3>Ready to create <strong>your own impact?</strong></h3>
+            <p>Let's design a sustainable bag that tells your story.</p>
+            <a href="contact.html" class="btn-gold-lg">Get in touch <i class="fas fa-arrow-right"></i></a>
         </div>
-    </section>
-
-    <!-- ===== CTA BANNER ===== -->
-    <div
-        style="background: #1b5e20; margin: 2rem 5% 4rem; padding: 3rem 2.5rem; border-radius: 60px; color: white; text-align: center;">
-        <h3 style="font-size: 2rem;">Ready to create your own impact?</h3>
-        <p style="margin:1rem 0 1.8rem; opacity:0.9;">Let’s design a sustainable bag that tells your story.</p>
-        <a href="contact.html"
-            style="background:white; color:#1b5e20; padding:1rem 2.8rem; border-radius:60px; font-weight:700; text-decoration:none; display:inline-block;">Get
-            in touch →</a>
     </div>
 
-    <!-- Footer Section -->
-    <footer class="footer-section ">
-        <div class="footer-content-wrapper">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">Eco Creation</div>
-                    <div class="footer-tagline">Let's Talk</div>
+    <!-- ══════════════════════ FOOTER ══════════════════════ -->
+    <footer class="footer">
+        <span class="bg-word">CREATION</span>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-logo-text">Eco <em>Creation</em></div>
+                    <p class="footer-tagline">Crafting a greener tomorrow through sustainable, eco-friendly bags for
+                        every occasion and every purpose.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/share/1ZBHp2oGmy" target="_blank" class="fsoc"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/94777222773" target="_blank" class="fsoc"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <div class="footer-column-title">Explore</div>
-                        <a href="index.html" class="footer-link">Home</a>
-                        <a href="about.html" class="footer-link">About</a>
-                        <a href="services.html" class="footer-link">Services</a>
-                        <a href="projects.html" class="footer-link">Projects</a>
-                        <a href="contact.html" class="footer-link">Contact</a>
-                        <a href="question.html" class="footer-link">FAQ</a>
-                    </div>
-
-
-                    <div class="footer-column">
-                        <div class="footer-column-title">Follow us</div>
-
-                        <a href="#" class="footer-link">Facebook</a>
-                    </div>
-                    <div class="footer-column">
-                        <div class="footer-column-title">Support</div>
-                        <a href="#" class="footer-link">Help Center</a>
-                        <a href="#" class="footer-link">Contact</a>
-                        <a href="#" class="footer-link">Privacy</a>
-                        <a href="#" class="footer-link">Terms</a>
-                    </div>
+                <div>
+                    <div class="footer-col-h">Explore</div>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="services.html" class="footer-link">Services</a>
+                    <a href="projects.html" class="footer-link">Projects</a>
+                </div>
+                <div>
+                    <div class="footer-col-h">Resources</div>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                    <a href="question.html" class="footer-link">FAQ</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                </div>
+                <div>
+                    <div class="footer-col-h">Contact</div>
+                    <a href="https://wa.me/94777222773" class="footer-link">+94 77 722 2773</a>
+                    <a href="mailto:ecocreational@gmail.com" class="footer-link">ecocreational@gmail.com</a>
+                    <span class="footer-link">Sri Lanka</span>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Eco Creation. All rights reserved. Site developed by <a
-                        href="https://influxyn.netlify.app/"
-                        style="text-decoration: none;font-weight: 800; color: aliceblue;">INFLUXYN</a> by YAGI Influx
-                    Solutions.</p>
-
+                <p>© 2025 Eco Creation. All rights reserved. Developed by <a href="https://influxyn.netlify.app/"
+                        target="_blank">INFLUXYN</a> by YAGI Influx Solutions.</p>
+                <p>Crafting a greener tomorrow 🌱</p>
             </div>
         </div>
     </footer>
-    <div class="whatsapp-button" onclick="window.open('https://wa.me/94777222773', '_blank')">
-    </div>
 
+    <!-- Float Buttons -->
+    <a class="wa-btn" href="https://wa.me/94777222773" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div class="up-btn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
 
     <script>
-        // LOADER
-        window.addEventListener('load', function () {
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-                document.body.classList.remove('preload');
-            }, 200);
+        /* ── CURSOR ── */
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
         });
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-            document.body.classList.remove('preload');
-        }, 2500);
-
-        // MOBILE MENU
-        function toggleMobileMenu() {
-            document.getElementById('navigationMenu').classList.toggle('active');
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.1;
+            ringY += (mouseY - ringY) * 0.1;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
         }
-        document.addEventListener('click', function (e) {
-            const menu = document.getElementById('navigationMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
-                menu.classList.remove('active');
-            }
+        animateRing();
+
+        /* ── LOADER ── */
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('eco-loader').classList.add('hide'), 2200);
+        });
+        setTimeout(() => document.getElementById('eco-loader').classList.add('hide'), 2800);
+
+        /* ── HEADER SCROLL ── */
+        window.addEventListener('scroll', () => {
+            document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        /* ── MOBILE NAV ── */
+        function toggleNav() {
+            document.getElementById('navMenu').classList.toggle('active');
         }
+        document.addEventListener('click', e => {
+            const nav = document.getElementById('navMenu');
+            const ham = document.getElementById('hamburger');
+            if (nav && ham && !nav.contains(e.target) && !ham.contains(e.target)) nav.classList.remove('active');
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) document.getElementById('navMenu').classList.remove('active');
+        });
 
-        // ===== SCROLL ANIMATIONS (Intersection Observer) =====
-        (function initScrollAnimations() {
-            // Elements to animate
-            const selectors = [
-                '.about-hero h1',
-                '.hero-sub',
-                '.story-text h2',
-                '.story-text p',
-                '.story-image',
-                '.values-section h2',
-                '.values-section > p',
-                '.value-card',
-                '.founder-note',
-                '.cta-banner'
-            ];
-
-            const animatedElements = document.querySelectorAll(selectors.join(','));
-
-            // Add animation class and custom properties for staggered delays
-            animatedElements.forEach(el => {
-                el.classList.add('animate-on-scroll');
-
-                // Add staggered delays for value cards
-                if (el.classList.contains('value-card')) {
-                    const cards = el.parentNode.querySelectorAll('.value-card');
-                    const index = Array.from(cards).indexOf(el);
-                    el.style.setProperty('--card-index', index);
-                }
-
-                // Add staggered delays for stat items
-                if (el.classList.contains('stat-item')) {
-                    const stats = el.parentNode.querySelectorAll('.stat-item');
-                    const index = Array.from(stats).indexOf(el);
-                    el.style.setProperty('--stat-index', index);
+        /* ── SCROLL REVEAL ── */
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObs.unobserve(e.target);
                 }
             });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => revealObs.observe(el));
 
-            // Create observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        // Optional: keep observing for re-animation or unobserve
-                        // observer.unobserve(entry.target);
-                    }
-                    // Optional: remove class when out of view (if you want re-animation)
-                    // else {
-                    //     entry.target.classList.remove('visible');
-                    // }
-                });
-            }, {
-                threshold: 0.2,
-                rootMargin: '0px 0px -30px 0px'
+        /* ── SCROLL TOP ── */
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        /* ── SMOOTH ANCHOR SCROLL ── */
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('navMenu').classList.remove('active'); }
             });
-
-            animatedElements.forEach(el => observer.observe(el));
-        })();
+        });
     </script>
 </body>
 

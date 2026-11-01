@@ -4,7 +4,7 @@
 1. index.html JSON-LD: `[STREET ADDRESS]`, `[CITY]`, `[PROVINCE]`, `[POSTAL CODE]`, geo `0.0/0.0`, opening hours.
 2. Hero copy in index.html: `[CITY]`, `[MIN QTY]`, `[X]-day turnaround`. Use only numbers you can honour.
 3. Create `assests/eco-creational-og.jpg` (1200x630) for link previews.
-4. Hero stats (98.5% eco score, 2.4K bags, 15t CO2) are hidden in refine.css. Re-enable only with figures you can back up.
+4. The old hero stats (98.5% eco score, 2.4K bags, 15t CO2), the 95% satisfaction figure and the 4.8 rating were removed in the redesign. Add them back only with figures you can back up.
 5. Submit https://ecocreational.com/sitemap.xml in Google Search Console and Bing Webmaster Tools; claim your Google Business Profile (this matters most for "near me" searches).
 
 ## Alt text rules
@@ -19,3 +19,8 @@ Filenames: lowercase-hyphenated, `material-product-print-place.ext` (e.g. `canva
 - Compress: dialog.png (2.2 MB), fb_pic2.png (2.2 MB), bhautik-patel…jpg (1.3 MB) → WebP under 200 KB.
 - Rename remaining fb_picN / illustration files the same way and update alts on projects.html and services.html.
 - Add a real address and a map embed to contact.html; local pages for each city you serve (e.g. /bag-printing-colombo.html).
+
+## Design system (redesign)
+- All styling lives in `site.css`, all behaviour in `site.js`. Pages no longer carry inline CSS.
+- Fonts: Instrument Serif (headings) + Instrument Sans (body). Colours are CSS variables at the top of `site.css`.
+- Icons are inline SVG (no Font Awesome). Optimised WebP copies of the three heaviest images are in `assests/`.
